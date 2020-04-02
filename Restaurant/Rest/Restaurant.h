@@ -14,6 +14,7 @@
 class Restaurant  
 {	
 private:
+	int AutoPromotion, AutoPromoted = 0, numN, numG, numV;
 	GUI *pGUI;
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
 
@@ -51,7 +52,7 @@ public:
 
 	void Just_A_Demo();	//just to show a demo and should be removed in phase1 1 & 2
 	void AddtoDemoQueue(Order* po);	//adds an order to the demo queue
-
+	void LoadAll(string filename);
 /// ================================================================================================== 
 
 

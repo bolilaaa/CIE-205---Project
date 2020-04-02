@@ -4,7 +4,10 @@
 Cook::Cook()
 {
 }
-
+Cook::Cook(int id, ORD_TYPE Type) {
+	ID = id;
+	type = Type;
+}
 
 Cook::~Cook()
 {
@@ -27,10 +30,16 @@ void Cook::setID(int id)
 {
 	ID = id;
 }
+void Cook::setSpeed(int sp) {
+	speed = sp;
+}
 
 void Cook::setType(ORD_TYPE t)
 {
 	type = t;
+}
+int Cook::getSpeed() const {
+	return speed;
 }
 
 

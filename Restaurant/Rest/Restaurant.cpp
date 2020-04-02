@@ -1,6 +1,9 @@
 #include <cstdlib>
 #include <time.h>
 #include <iostream>
+#include<fstream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 #include "Restaurant.h"
@@ -11,6 +14,7 @@ Restaurant::Restaurant()
 {
 	pGUI = NULL;
 }
+ifstream file_load;
 
 void Restaurant::RunSimulation()
 {
@@ -190,6 +194,78 @@ void Restaurant::Just_A_Demo()
 void Restaurant::AddtoDemoQueue(Order *pOrd)
 {
 	DEMO_Queue.enqueue(pOrd);
+}
+void Restaurant::LoadAll(string filename) {
+	int Num_of_events; //variable to read the number of events from the file
+	int BO, BN, BG, BV, SN, SG, SV; //variables to read motorcycle speed ranges
+	file_load.open(filename.c_str()); //opening the file
+	/*PROG_MODE mode = pGUI->getGUIMode();
+	if (mode != MODE_SLNT) {
+		while (!file_load) {
+			pGUI->PrintMessage("Enter an Existing Input File Name: ");
+			filename = pGUI->GetString();
+			file_load.open(filename.c_str());
+		}
+	}*/
+	file_load >> numN >> numG >> numV  >>  SN >> SG >> SV >>BO>>BN>>BG>>BV>> AutoPromotion;
+	file_load >> Num_of_events;
+	srand(time(0));
+
+	//Intializing Cooks lists
+	Cook* CK;
+	for (int i = 0; i < numV; i++) {
+		CK = new Cook(i + 1, TYPE_VIP);
+		CK->setSpeed(SV );
+		// Here I will put a function to puch every cook in his queue
+	}
+	for (int i = 0; i < numG; i++) {
+		CK = new Cook(i + 1, TYPE_VGAN);
+		CK->setSpeed(SG);
+		// Here I will put a function to puch every cook in his queue
+	}
+	for (int i = 0; i < numN; i++) {
+		CK = new Cook(i + 1, TYPE_NRM);
+		CK->setSpeed(SN);
+		// Here I will put a function to puch every cook in his queue
+	}
+
+	Event* CurEvent; //pointer to event it points to any class object inherited from event as arrival,cancel and promote
+	ORD_TYPE CurOrderType; //as the arrival event's constructor needs a parameter from the typr ORD_Type
+	char type; //to read the event type
+	int CurTime; int CurID; int CurType; double CurCost; int CurSize; double ExMoney; //variables to read from the file
+	for (int i = 0; i < Num_of_events; i++) {
+		file_load >> type;
+		switch (type)
+		{
+		case 'R':
+			file_load >> CurType >> CurTime >> CurID >> CurSize >> CurCost;
+			//CurOrderType = Restaurant::determineOrderType(CurType); here is a function to know the type of order I will add it after finishing resturant class
+			switch (CurOrderType)
+			{
+			case TYPE_NRM:
+				//cNRMord++;
+				break;
+			case TYPE_VGAN:
+				//cFROZord++;
+				break;
+			case TYPE_VIP:
+				//cVIPord++;
+				break;
+			}
+			//CurEvent = new ArrivalEvent(CurTime, CurID, CurOrderType, CurCost, CurDist);
+			break;
+		case 'X':
+			file_load >> CurTime >> CurID;
+			//CurEvent = new CancelEvent(CurTime, CurID); I will add it after finshing resturant class
+			break;
+		case 'P':
+			file_load >> CurTime >> CurID >> ExMoney;
+			//CurEvent = new PormoteEvent(CurTime, CurID, ExMoney);
+			break;
+		}
+		//EventsQueue.rversedenqueue(CurEvent, CurTime);
+	}
+	file_load.close();
 }
 
 /// ==> end of DEMO-related function

@@ -11,10 +11,12 @@ class Cook
 
 public:
 	Cook();
+	Cook(int ID, ORD_TYPE type);
 	virtual ~Cook();
 	int GetID() const;
 	ORD_TYPE GetType() const;
 	void setID(int);
 	void setType(ORD_TYPE) ;
-
+	void setSpeed(int sp);
+	int getSpeed() const;
 };
