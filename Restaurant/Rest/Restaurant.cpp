@@ -385,46 +385,57 @@ void Restaurant::rmvsrvOR2Orders(Order* ptr)
 
 void Restaurant::rmvdoneOrders(Order* ptr)
 {
+	doneOrders.dequeue(ptr);
 }
 
 void Restaurant::rmvavNORCooks(Order* ptr)
 {
+	avNORCooks.dequeue(ptr);
 }
 
 void Restaurant::rmvavVEGCooks(Order* ptr)
 {
+	avVEGCooks.dequeue(ptr);
 }
 
 void Restaurant::rmvavVIPCooks(Order* ptr)
 {
+	avOR1Cooks.dequeue(ptr);
 }
 
 void Restaurant::rmvavOR1Cooks(Order* ptr)
 {
+	avOR2Cooks.dequeue(ptr);
 }
 
 void Restaurant::rmvavOR2Cooks(Order* ptr)
 {
+	avOR2Cooks.dequeue(ptr);
 }
 
 void Restaurant::rmvnavNORCooks(Order* ptr)
 {
+	navNORCooks.dequeue(ptr);
 }
 
 void Restaurant::rmvnavVEGCooks(Order* ptr)
 {
+	navVEGCooks.dequeue(ptr);
 }
 
 void Restaurant::rmvnavVIPCooks(Order* ptr)
 {
+	navVIPCooks.dequeue(ptr);
 }
 
 void Restaurant::rmvnavOR1Cooks(Order* ptr)
 {
+	navOR1Cooks.dequeue(ptr);
 }
 
 void Restaurant::rmvnavOR2Cooks(Order* ptr)
 {
+	navOR2Cooks.dequeue(ptr);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
