@@ -14,7 +14,7 @@
 class Restaurant  
 {	
 private:
-	int AutoPromotion, AutoPromoted = 0, numNOR = 0, numVEG = 0, numVIP = 0, numOR1 = 0, numORD = 0;
+	int AutoPromotion, AutoPromoted = 0, numCNOR = 0, numCVEG = 0, numCVIP = 0, numCOR1 = 0, numCOR2 = 0;
 	GUI *pGUI;
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
 

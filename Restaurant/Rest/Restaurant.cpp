@@ -29,9 +29,9 @@ void Restaurant::RunSimulation()
 		break;
 	case MODE_SLNT:
 		break;
-	case MODE_DEMO:
-		Just_A_Demo();
-
+	case MODE_SIMU:
+		SIMULATE();
+		break;
 	};
 
 }
@@ -56,7 +56,6 @@ void Restaurant::ExecuteEvents(int CurrentTimeStep)
 
 }
 
-
 Restaurant::~Restaurant()
 {
 		if (pGUI)
@@ -73,18 +72,84 @@ void Restaurant::FillDrawingList()
 
 }
 
+void Restaurant::LoadAll(string filename) {
+	int Num_of_events; //variable to read the number of events from the file
+	int BO, BN, BG, BV, SN, SG, SV; //variables to read motorcycle speed ranges
+	file_load.open(filename.c_str()); //opening the file
+	/*PROG_MODE mode = pGUI->getGUIMode();
+	if (mode != MODE_SLNT) {
+		while (!file_load) {
+			pGUI->PrintMessage("Enter an Existing Input File Name: ");
+			filename = pGUI->GetString();
+			file_load.open(filename.c_str());
+		}
+	}*/
+	file_load >> numCNOR >> numCVEG >> numCVIP >> SN >> SG >> SV >> BO >> BN >> BG >> BV >> AutoPromotion;
+	file_load >> Num_of_events;
+	srand(time(0));
 
+	//Intializing Cooks lists
+	Cook* CK;
+	for (int i = 0; i < numCVIP; i++) {
+		CK = new Cook(i + 1, TYPE_VIP);
+		CK->setSpeed(SV);
+		// Here I will put a function to puch every cook in his queue
+	}
+	for (int i = 0; i < numCVEG; i++) {
+		CK = new Cook(i + 1, TYPE_VGAN);
+		CK->setSpeed(SG);
+		// Here I will put a function to puch every cook in his queue
+	}
+	for (int i = 0; i < numCNOR; i++) {
+		CK = new Cook(i + 1, TYPE_NRM);
+		CK->setSpeed(SN);
+		// Here I will put a function to puch every cook in his queue
+	}
 
+	Event* CurEvent; //pointer to event it points to any class object inherited from event as arrival,cancel and promote
+	ORD_TYPE CurOrderType; //as the arrival event's constructor needs a parameter from the typr ORD_Type
+	char type; //to read the event type
+	int CurTime; int CurID; int CurType; double CurCost; int CurSize; double ExMoney; //variables to read from the file
+	for (int i = 0; i < Num_of_events; i++) {
+		file_load >> type;
+		switch (type)
+		{
+		case 'R':
+			file_load >> CurType >> CurTime >> CurID >> CurSize >> CurCost;
+			//CurOrderType = Restaurant::determineOrderType(CurType); here is a function to know the type of order I will add it after finishing resturant class
+			switch (CurOrderType)
+			{
+			case TYPE_NRM:
+				//cNRMord++;
+				break;
+			case TYPE_VGAN:
+				//cFROZord++;
+				break;
+			case TYPE_VIP:
+				//cVIPord++;
+				break;
+			}
+			//CurEvent = new ArrivalEvent(CurTime, CurID, CurOrderType, CurCost, CurDist);
+			break;
+		case 'X':
+			file_load >> CurTime >> CurID;
+			//CurEvent = new CancelEvent(CurTime, CurID); I will add it after finshing resturant class
+			break;
+		case 'P':
+			file_load >> CurTime >> CurID >> ExMoney;
+			//CurEvent = new PormoteEvent(CurTime, CurID, ExMoney);
+			break;
+		}
+		//EventsQueue.rversedenqueue(CurEvent, CurTime);
+	}
+	file_load.close();
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-/// ==> 
-///  DEMO-related functions. Should be removed in phases 1&2
 
-//Begin of DEMO-related functions
+//////////////////////////////////  Operation Modes   /////////////////////////////
 
-//This is just a demo function for project introductory phase
-//It should be removed starting phase 1
-void Restaurant::Just_A_Demo()
+void Restaurant::SIMULATE()
 {
 	
 	//
@@ -189,86 +254,179 @@ void Restaurant::Just_A_Demo()
 
 	
 }
-////////////////
 
-void Restaurant::AddtoDemoQueue(Order *pOrd)
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////  List handling functions   /////////////////////////////
+
+void Restaurant::AddtowaitingNOROrders(Order* ptr)
 {
-	DEMO_Queue.enqueue(pOrd);
-}
-void Restaurant::LoadAll(string filename) {
-	int Num_of_events; //variable to read the number of events from the file
-	int BO, BN, BG, BV, SN, SG, SV; //variables to read motorcycle speed ranges
-	file_load.open(filename.c_str()); //opening the file
-	/*PROG_MODE mode = pGUI->getGUIMode();
-	if (mode != MODE_SLNT) {
-		while (!file_load) {
-			pGUI->PrintMessage("Enter an Existing Input File Name: ");
-			filename = pGUI->GetString();
-			file_load.open(filename.c_str());
-		}
-	}*/
-	file_load >> numN >> numG >> numV  >>  SN >> SG >> SV >>BO>>BN>>BG>>BV>> AutoPromotion;
-	file_load >> Num_of_events;
-	srand(time(0));
-
-	//Intializing Cooks lists
-	Cook* CK;
-	for (int i = 0; i < numV; i++) {
-		CK = new Cook(i + 1, TYPE_VIP);
-		CK->setSpeed(SV );
-		// Here I will put a function to puch every cook in his queue
-	}
-	for (int i = 0; i < numG; i++) {
-		CK = new Cook(i + 1, TYPE_VGAN);
-		CK->setSpeed(SG);
-		// Here I will put a function to puch every cook in his queue
-	}
-	for (int i = 0; i < numN; i++) {
-		CK = new Cook(i + 1, TYPE_NRM);
-		CK->setSpeed(SN);
-		// Here I will put a function to puch every cook in his queue
-	}
-
-	Event* CurEvent; //pointer to event it points to any class object inherited from event as arrival,cancel and promote
-	ORD_TYPE CurOrderType; //as the arrival event's constructor needs a parameter from the typr ORD_Type
-	char type; //to read the event type
-	int CurTime; int CurID; int CurType; double CurCost; int CurSize; double ExMoney; //variables to read from the file
-	for (int i = 0; i < Num_of_events; i++) {
-		file_load >> type;
-		switch (type)
-		{
-		case 'R':
-			file_load >> CurType >> CurTime >> CurID >> CurSize >> CurCost;
-			//CurOrderType = Restaurant::determineOrderType(CurType); here is a function to know the type of order I will add it after finishing resturant class
-			switch (CurOrderType)
-			{
-			case TYPE_NRM:
-				//cNRMord++;
-				break;
-			case TYPE_VGAN:
-				//cFROZord++;
-				break;
-			case TYPE_VIP:
-				//cVIPord++;
-				break;
-			}
-			//CurEvent = new ArrivalEvent(CurTime, CurID, CurOrderType, CurCost, CurDist);
-			break;
-		case 'X':
-			file_load >> CurTime >> CurID;
-			//CurEvent = new CancelEvent(CurTime, CurID); I will add it after finshing resturant class
-			break;
-		case 'P':
-			file_load >> CurTime >> CurID >> ExMoney;
-			//CurEvent = new PormoteEvent(CurTime, CurID, ExMoney);
-			break;
-		}
-		//EventsQueue.rversedenqueue(CurEvent, CurTime);
-	}
-	file_load.close();
 }
 
-/// ==> end of DEMO-related function
+void Restaurant::AddtowaitingVEGOrders(Order* ptr)
+{
+}
+
+void Restaurant::AddtowaitingVIPOrders(Order* ptr)
+{
+}
+
+void Restaurant::AddtowaitingOR1Orders(Order* ptr)
+{
+}
+
+void Restaurant::AddtowaitingOR2Orders(Order* ptr)
+{
+}
+
+void Restaurant::AddtosrvNOROrders(Order* ptr)
+{
+}
+
+void Restaurant::AddtosrvVEGOrders(Order* ptr)
+{
+}
+
+void Restaurant::AddtosrvVIPOrders(Order* ptr)
+{
+}
+
+void Restaurant::AddtosrvOR1Orders(Order* ptr)
+{
+}
+
+void Restaurant::AddtosrvOR2Orders(Order* ptr)
+{
+}
+
+void Restaurant::AddtodoneOrders(Order* ptr)
+{
+}
+
+void Restaurant::AddtoavNORCooks(Order* ptr)
+{
+}
+
+void Restaurant::AddtoavVEGCooks(Order* ptr)
+{
+}
+
+void Restaurant::AddtoavVIPCooks(Order* ptr)
+{
+}
+
+void Restaurant::AddtoavOR1Cooks(Order* ptr)
+{
+}
+
+void Restaurant::AddtoavOR2Cooks(Order* ptr)
+{
+}
+
+void Restaurant::AddtonavNORCooks(Order* ptr)
+{
+}
+
+void Restaurant::AddtonavVEGCooks(Order* ptr)
+{
+}
+
+void Restaurant::AddtonavVIPCooks(Order* ptr)
+{
+}
+
+void Restaurant::AddtonavOR1Cooks(Order* ptr)
+{
+}
+
+void Restaurant::AddtonavOR2Cooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvwaitingNOROrders(Order* ptr)
+{
+}
+
+void Restaurant::rmvwaitingVEGOrders(Order* ptr)
+{
+}
+
+void Restaurant::rmvwaitingVIPOrders(Order* ptr)
+{
+}
+
+void Restaurant::rmvwaitingOR1Orders(Order* ptr)
+{
+}
+
+void Restaurant::rmvwaitingOR2Orders(Order* ptr)
+{
+}
+
+void Restaurant::rmvsrvNOROrders(Order* ptr)
+{
+}
+
+void Restaurant::rmvsrvVEGOrders(Order* ptr)
+{
+}
+
+void Restaurant::rmvsrvVIPOrders(Order* ptr)
+{
+}
+
+void Restaurant::rmvsrvOR1Orders(Order* ptr)
+{
+}
+
+void Restaurant::rmvsrvOR2Orders(Order* ptr)
+{
+}
+
+void Restaurant::rmvdoneOrders(Order* ptr)
+{
+}
+
+void Restaurant::rmvavNORCooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvavVEGCooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvavVIPCooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvavOR1Cooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvavOR2Cooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvnavNORCooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvnavVEGCooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvnavVIPCooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvnavOR1Cooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvnavOR2Cooks(Order* ptr)
+{
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 
