@@ -207,23 +207,23 @@ void Restaurant::LoadAll(string filename) {
 			file_load.open(filename.c_str());
 		}
 	}*/
-	file_load >> numN >> numG >> numV  >>  SN >> SG >> SV >>BO>>BN>>BG>>BV>> AutoPromotion;
+	file_load >> numNOR >> numVEG >> numVIP  >>  SN >> SG >> SV >>BO>>BN>>BG>>BV>> AutoPromotion;
 	file_load >> Num_of_events;
 	srand(time(0));
 
 	//Intializing Cooks lists
 	Cook* CK;
-	for (int i = 0; i < numV; i++) {
+	for (int i = 0; i < numVIP; i++) {
 		CK = new Cook(i + 1, TYPE_VIP);
 		CK->setSpeed(SV );
 		// Here I will put a function to puch every cook in his queue
 	}
-	for (int i = 0; i < numG; i++) {
+	for (int i = 0; i < numVEG; i++) {
 		CK = new Cook(i + 1, TYPE_VGAN);
 		CK->setSpeed(SG);
 		// Here I will put a function to puch every cook in his queue
 	}
-	for (int i = 0; i < numN; i++) {
+	for (int i = 0; i < numNOR; i++) {
 		CK = new Cook(i + 1, TYPE_NRM);
 		CK->setSpeed(SN);
 		// Here I will put a function to puch every cook in his queue
