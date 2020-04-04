@@ -22,6 +22,7 @@ protected:
 public:
 	Order(int ID, ORD_TYPE r_Type);
 	Order(int ID, ORD_TYPE r_Type, double pir); //constructor for VIP orders
+	virtual ~Order();
 
 	//Setters // 
 	void SetDistance(int d);
@@ -35,6 +36,7 @@ public:
 	void setStartSrvTime(int time);
 	void setFinTime(int time);
 	void setSize(const int size);
+
 	// Getters //
 	int GetID();
 	ORD_TYPE GetType() const;
@@ -49,10 +51,6 @@ public:
 	double getMoney() const; // price
 	double Getpriority() const;
 	void increamentWaitTime();
-	//
-	virtual ~Order();
-	
-
 };
 
 #endif

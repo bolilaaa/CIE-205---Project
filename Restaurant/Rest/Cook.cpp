@@ -26,20 +26,36 @@ ORD_TYPE Cook::GetType() const
 }
 
 
+int Cook::getSpeed() const 
+{
+	return speed;
+}
+
+
+int Cook::getBreakTime() const
+{
+	return breaktime;
+}
+
+
 void Cook::setID(int id)
 {
 	ID = id;
 }
-void Cook::setSpeed(int sp) {
-	speed = sp;
-}
+
 
 void Cook::setType(ORD_TYPE t)
 {
 	type = t;
 }
-int Cook::getSpeed() const {
-	return speed;
+
+void Cook::setSpeed(int sp) 
+{
+	speed = sp;
 }
 
 
+void Cook::setBreakTime(int bt)
+{
+	breaktime = bt;
+}
