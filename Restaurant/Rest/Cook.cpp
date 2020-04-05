@@ -37,6 +37,11 @@ int Cook::getBreakTime() const
 	return breaktime;
 }
 
+COOK_STATUS Cook::getStatus() const
+{
+	return COOK_STATUS();
+}
+
 
 void Cook::setID(int id)
 {
@@ -58,4 +63,9 @@ void Cook::setSpeed(int sp)
 void Cook::setBreakTime(int bt)
 {
 	breaktime = bt;
+}
+
+void Cook::setStatus(COOK_STATUS cs)
+{
+	status = cs;
 }
