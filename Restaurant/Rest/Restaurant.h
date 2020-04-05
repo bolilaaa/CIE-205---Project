@@ -4,11 +4,13 @@
 #include "..\Defs.h"
 #include "..\CMUgraphicsLib\CMUgraphics.h"
 #include "..\GUI\GUI.h"
-#include "..\Generic_DS\Queue.h"
+//#include "..\Generic_DS\Queue.h"
 #include "..\Events\Event.h"
 
 #include "Order.h"
 #include "Cook.h"
+
+#include <queue> 
 
 // it is the maestro of the project
 class Restaurant  
@@ -17,6 +19,22 @@ private:
 	int AutoPromotion, AutoPromoted = 0, numCNOR = 0, numCVEG = 0, numCVIP = 0, numCOR1 = 0, numCOR2 = 0;
 	GUI *pGUI;
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+
+	class ComparePri {
+	public:
+		bool operator()(Order* & O1, Order* & O2) // Returns true if t1 is earlier than t2
+		{
+			if (O1->Getpriority() < O2->Getpriority()) return true;
+			if (O1->Getpriority() == O2->Getpriority() && O1->getFinishTime() < O2->getFinishTime()) return true;
+			return false;
+		}
+	};
+
+	priority_queue<Order*, vector<Order*>, ComparePri> pq;
+	   	  
+
 
 	//	Resturant Lists
 
@@ -69,7 +87,8 @@ public:
 	void LoadAll(string filename);
 
 	/// operation modes ///
-	void SIMULATE();	
+	void SIMULATE();
+	void SIMULATE2();
 
 
 	/////////////// Lists functions ///////////////
