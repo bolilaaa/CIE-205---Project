@@ -74,7 +74,7 @@ void Restaurant::FillDrawingList()
 
 void Restaurant::LoadAll(string filename) {
 	int Num_of_events; //variable to read the number of events from the file
-	int BO, BN, BG, BV, SN, SG, SV; //variables to read motorcycle speed ranges
+	int BO, BN, BG, BV, SN, SG, SV; //variables to read cooks speed ranges
 	file_load.open(filename.c_str()); //opening the file
 	/*PROG_MODE mode = pGUI->getGUIMode();
 	if (mode != MODE_SLNT) {
@@ -151,36 +151,18 @@ void Restaurant::LoadAll(string filename) {
 
 void Restaurant::SIMULATE()
 {
-	//while (!StopRunning)
-	//{
-	//	//VIP Order
-	//	if (!waitingVIPOrders.empty()) {
-	//		if (!avVIPCooks.isEmpty())
-	//		{
-	//			rmvwaitingVIPOrders(pOrd);
-	//			pOrd->setStatus(SRV);
-	//			AddtosrvVIPOrders(pOrd);
-
-	//			rmvavVIPCooks;
-	//		}
-
-	//	}
-	//}
-
-	//
-	// THIS IS JUST A DEMO FUNCTION
-	// IT SHOULD BE REMOVED IN PHASE 1 AND PHASE 2
-	
-	int EventCnt;	
-	Order* pOrd;
-	Event* pEv;
-	srand(time(NULL));
-
-	pGUI->PrintMessage("Just a Demo. Enter EVENTS Count(next phases should read I/P filename):");
-	EventCnt = atoi(pGUI->GetString().c_str());	//get user input as a string then convert to integer
-
-	pGUI->PrintMessage("Generating Events randomly... In next phases, Events should be loaded from a file...CLICK to continue");
+	// Taking the input and initializing the events
+	string filename;
+	pGUI->PrintMessage("Simulation Mode. Enter INPUT file name:");
+	filename = pGUI->GetString().c_str();	//get user input as a string
+	LoadAll(filename);
+	pGUI->PrintMessage("CLICK to continue");
 	pGUI->waitForClick();
+
+	
+	Event* pEv;
+	Order* pOrd;
+	srand(time(NULL));
 		
 	//Just for sake of demo, generate some cooks and add them to the drawing list
 	//In next phases, Cooks info should be loaded from input file
@@ -268,6 +250,23 @@ void Restaurant::SIMULATE()
 	pGUI->waitForClick();
 
 	
+
+
+	//while (!StopRunning)
+//{
+//	//VIP Order
+//	if (!waitingVIPOrders.empty()) {
+//		if (!avVIPCooks.isEmpty())
+//		{
+//			rmvwaitingVIPOrders(pOrd);
+//			pOrd->setStatus(SRV);
+//			AddtosrvVIPOrders(pOrd);
+
+//			rmvavVIPCooks;
+//		}
+
+//	}
+//}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
