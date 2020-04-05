@@ -108,7 +108,10 @@
     <ClInclude Include="Rest\Cook.h">
       <Filter>Restaurant</Filter>
     </ClInclude>
-    <ClInclude Include="ComparePri.h">
+    <ClInclude Include="CompareOPri.h">
+      <Filter>Restaurant</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic_DS\CompareCPri.h">
       <Filter>Restaurant</Filter>
     </ClInclude>
   </ItemGroup>
