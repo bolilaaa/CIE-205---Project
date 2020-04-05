@@ -30,11 +30,23 @@ void ArrivalEvent::Execute(Restaurant* pRest)
 		pRest->AddtowaitingVIPOrders(pOrd);
 	}
 	else if (OrdType == TYPE_NRM) {
-		pOrd->setStatus(WAIT);
-		pOrd->setSize(OrdSize);
-		pOrd->setArrivalTime(EventTime);
-		pOrd->setMoney(OrdMoney);
-		pRest->AddtowaitingNOROrders(pOrd);
+		if (pRest->crrtimestep >= EventTime + pRest->AutoPromotion)
+		{
+			pOrd->setSize(OrdSize);
+			pOrd->setMoney(OrdMoney);
+			pOrd->setArrivalTime(EventTime);
+			pOrd->setStatus(WAIT);
+			pRest->waitingVIPOrders.emplace(pOrd);
+			pRest->AutoPromoted++;
+		}
+		else
+		{
+			pOrd->setStatus(WAIT);
+			pOrd->setSize(OrdSize);
+			pOrd->setArrivalTime(EventTime);
+			pOrd->setMoney(OrdMoney);
+			pRest->AddtowaitingNOROrders(pOrd);
+		}
 	}
 	else if (OrdType == TYPE_VGAN) {
 		pOrd->setStatus(WAIT);

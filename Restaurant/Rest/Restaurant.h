@@ -18,7 +18,9 @@
 // it is the maestro of the project
 class Restaurant  
 {	
-private:
+public:
+	double crrtimestep = 0;
+//private:
 	int AutoPromotion, AutoPromoted = 0, numCNOR = 0, numCVEG = 0, numCVIP = 0, numCCHN = 0, numCMEX = 0;
 	GUI *pGUI;
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
@@ -103,19 +105,6 @@ public:
 
 	void AddtodoneOrders(Order* ptr);
 
-	void AddtoavNORCooks(Cook* ptr);
-	void AddtoavVEGCooks(Cook* ptr);
-	void AddtoavCHNCooks(Cook* ptr);
-	void AddtoavMEXCooks(Cook* ptr);
-	void AddtoavVIPCooks(Cook* ptr);
-
-
-	void AddtonavNORCooks(Cook* ptr);
-	void AddtonavVEGCooks(Cook* ptr);
-	void AddtonavCHNCooks(Cook* ptr);
-	void AddtonavMEXCooks(Cook* ptr);
-	void AddtonavVIPCooks(Cook* ptr);
-
 	/// remove from the lists ///
 	void rmvwaitingNOROrders(Order* ptr);
 	void rmvwaitingVEGOrders(Order* ptr);
@@ -132,18 +121,6 @@ public:
 
 
 	void rmvdoneOrders(Order* ptr);
-
-	void rmvavNORCooks(Cook* ptr);
-	void rmvavVEGCooks(Cook* ptr);
-	void rmvavCHNCooks(Cook* ptr);
-	void rmvavMEXCooks(Cook* ptr);
-	void rmvavVIPCooks(Cook* ptr);
-
-	void rmvnavNORCooks(Cook* ptr);
-	void rmvnavVEGCooks(Cook* ptr);
-	void rmvnavCHNCooks(Cook* ptr);
-	void rmvnavMEXCooks(Cook* ptr);
-	void rmvnavVIPCooks(Cook* ptr);
 };
 
 #endif

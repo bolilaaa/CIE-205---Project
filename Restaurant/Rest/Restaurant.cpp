@@ -49,6 +49,7 @@ void Restaurant::ExecuteEvents(int CurrentTimeStep)
 		if(pE->getEventTime() > CurrentTimeStep )	//no more events at current timestep
 			return;
 
+		crrtimestep = CurrentTimeStep;
 		pE->Execute(this);
 		EventsQueue.dequeue(pE);	//remove event from the queue
 		delete pE;		//deallocate event object from memory
@@ -86,25 +87,25 @@ void Restaurant::LoadAll(string filename) {
 	int BO, BN, BG, BV, SN, SG, SV; //variables to read cooks speed ranges and break times
 	file_load.open(filename.c_str()); //opening the file
 	file_load >> numCNOR >> numCVEG >> numCVIP >> SN >> SG >> SV >> BO >> BN >> BG >> BV >> AutoPromotion;
-	//Intializing Cooks lists
+	//Intializing Cooks lists (cooks will be pushed directly but orders will use functions)
 	Cook* CK;
 	for (int i = 0; i < numCVIP; i++) {
 		CK = new Cook(i + 1, TYPE_VIP);
 		CK->setSpeed(SV);
 		CK->setBreakTime(BV);
-		AddtoavVIPCooks(CK);
+		avVIPCooks.push(CK);
 	}
 	for (int i = 0; i < numCVEG; i++) {
 		CK = new Cook(i + 1, TYPE_VGAN);
 		CK->setSpeed(SG);
 		CK->setBreakTime(BG);
-		AddtoavVEGCooks(CK);
+		avVEGCooks.push(CK);
 	}
 	for (int i = 0; i < numCNOR; i++) {
 		CK = new Cook(i + 1, TYPE_NRM);
 		CK->setSpeed(SN);
 		CK->setBreakTime(BN);
-		AddtoavNORCooks(CK);
+		avNORCooks.push(CK);
 	}
 
 	file_load >> Num_of_events;
@@ -165,7 +166,7 @@ void Restaurant::SIMULATE()
 	// Taking the input and initializing the cooks and fill the EventsQueue
 	string filename;
 	pGUI->PrintMessage("Simulation Mode. Enter INPUT file name:");
-	filename = pGUI->GetString().c_str();	//get user input as a string
+	filename = pGUI->GetString();	//get user input as a string
 	LoadAll(filename);
 	pGUI->PrintMessage("CLICK to start");
 	pGUI->waitForClick();
@@ -193,10 +194,11 @@ void Restaurant::SIMULATE()
 				AddtosrvVIPOrders(pOrd);
 
 				// move cooks
-				rmvavVIPCooks(pCook);
+				pCook = avVIPCooks.top();
+				avVIPCooks.pop();
 				pCook->setStatus(NAV);
 				pCook->setAOrder(pOrd);
-				AddtonavVIPCooks(pCook);
+				navVIPCooks.push(pCook);
 			}
 			else if (!avNORCooks.empty())
 			{
@@ -206,10 +208,10 @@ void Restaurant::SIMULATE()
 				AddtosrvVIPOrders(pOrd);
 
 				// move cooks
-				rmvavNORCooks(pCook);
+				avNORCooks.pop();
 				pCook->setStatus(NAV);
 				pCook->setAOrder(pOrd);
-				AddtonavNORCooks(pCook);
+				navNORCooks.push(pCook);
 			}
 			else if (!avVEGCooks.empty())
 			{
@@ -219,12 +221,19 @@ void Restaurant::SIMULATE()
 				AddtosrvVIPOrders(pOrd);
 
 				// move cooks
-				rmvavVEGCooks(pCook);
+				avVEGCooks.pop();
 				pCook->setStatus(NAV);
 				pCook->setAOrder(pOrd);
-				AddtonavVEGCooks(pCook);
+				navVEGCooks.push(pCook);
 			}
 		}
+
+		/// Normal Orders
+
+
+
+		/// Vegan Orders
+
 
 		// Each 5 seconds remove orders to done and cooks to available
 		if (CurrentTimeStep % 5 == 0) 
@@ -235,6 +244,7 @@ void Restaurant::SIMULATE()
 				pCook = navNORCooks.top();
 				if (CurrentTimeStep % pCook->getSpeed() == 0)
 				{
+					navNORCooks.pop();
 					pCook->setdOrders(pCook->getdOrders() + 1);
 					// move cook
 					if (pCook->getdOrders() % 5) // to be modified to number of orders after which is break
@@ -249,13 +259,9 @@ void Restaurant::SIMULATE()
 					}
 					// move order
 					pOrd = pCook->getAOrder();
-					rmvsrvNOROrders(pOrd);
 					pOrd->setStatus(DONE);
 					AddtodoneOrders(pOrd);
-				}
-				else
-				{
-					navNORCooks.emplace(pCook);
+					rmvsrvNOROrders(pOrd);
 				}
 			}
 			
@@ -266,36 +272,32 @@ void Restaurant::SIMULATE()
 			// Mexican
 			
 			// VIP
-			if (!srvVIPOrders.isEmpty())
-			{
-				// move orders
-				rmvsrvVIPOrders(pOrd);
-				pOrd->setStatus(DONE);
-				AddtodoneOrders(pOrd);
 
-				//// move cooks ///
-				//rmvnavVEGCooks(pCook);
-				//pCook->setStatus(AV);
-				//AddtoavVEGCooks(pCook);
-			}
 		}
 
 		// getting back to work out of the break
+		// Normal
 		if (!brkNORCooks.empty())
 		{
+			for (int i = 0; i < brkNORCooks.size(); i++)
+			{
+				brkNORCooks[i]->setBreakCount(getBreakCount() + 1);
+			}	
+			
 			pCook = navNORCooks.top();
 			if (pCook->getBreakTime() == pCook->getBreakCount())
 			{
 				// move cook
+				navNORCooks.pop();
 				pCook->setStatus(AV);
-				avNORCooks.push(pCook);
 				pCook->setBreakCount(0);
-			}
-			else
-			{
-				brkNORCooks.emplace(pCook);
+				avNORCooks.push(pCook);
 			}
 		}
+
+		// Vegan
+
+		// VIP
 
 		FillDrawingList();
 		pGUI->UpdateInterface();
@@ -356,46 +358,6 @@ void Restaurant::AddtodoneOrders(Order* ptr)
 {
 }
 
-void Restaurant::AddtoavNORCooks(Cook* ptr)
-{
-}
-
-void Restaurant::AddtoavVEGCooks(Cook* ptr)
-{
-}
-
-void Restaurant::AddtoavCHNCooks(Cook* ptr)
-{
-}
-
-void Restaurant::AddtoavMEXCooks(Cook* ptr)
-{
-}
-
-void Restaurant::AddtoavVIPCooks(Cook* ptr)
-{
-}
-
-void Restaurant::AddtonavNORCooks(Cook* ptr)
-{
-}
-
-void Restaurant::AddtonavVEGCooks(Cook* ptr)
-{
-}
-
-void Restaurant::AddtonavCHNCooks(Cook* ptr)
-{
-}
-
-void Restaurant::AddtonavMEXCooks(Cook* ptr)
-{
-}
-
-void Restaurant::AddtonavVIPCooks(Cook* ptr)
-{
-}
-
 void Restaurant::rmvwaitingNOROrders(Order* ptr)
 {
 }
@@ -437,46 +399,6 @@ void Restaurant::rmvsrvVIPOrders(Order* ptr)
 }
 
 void Restaurant::rmvdoneOrders(Order* ptr)
-{
-}
-
-void Restaurant::rmvavNORCooks(Cook* ptr)
-{
-}
-
-void Restaurant::rmvavVEGCooks(Cook* ptr)
-{
-}
-
-void Restaurant::rmvavCHNCooks(Cook* ptr)
-{
-}
-
-void Restaurant::rmvavMEXCooks(Cook* ptr)
-{
-}
-
-void Restaurant::rmvavVIPCooks(Cook* ptr)
-{
-}
-
-void Restaurant::rmvnavNORCooks(Cook* ptr)
-{
-}
-
-void Restaurant::rmvnavVEGCooks(Cook* ptr)
-{
-}
-
-void Restaurant::rmvnavCHNCooks(Cook* ptr)
-{
-}
-
-void Restaurant::rmvnavMEXCooks(Cook* ptr)
-{
-}
-
-void Restaurant::rmvnavVIPCooks(Cook* ptr)
 {
 }
 
