@@ -74,73 +74,75 @@ void Restaurant::FillDrawingList()
 
 void Restaurant::LoadAll(string filename) {
 	int Num_of_events; //variable to read the number of events from the file
-	int BO, BN, BG, BV, SN, SG, SV; //variables to read cooks speed ranges
+	int BO, BN, BG, BV, SN, SG, SV; //variables to read cooks speed ranges and break times
 	file_load.open(filename.c_str()); //opening the file
-	/*PROG_MODE mode = pGUI->getGUIMode();
-	if (mode != MODE_SLNT) {
-		while (!file_load) {
-			pGUI->PrintMessage("Enter an Existing Input File Name: ");
-			filename = pGUI->GetString();
-			file_load.open(filename.c_str());
-		}
-	}*/
 	file_load >> numCNOR >> numCVEG >> numCVIP >> SN >> SG >> SV >> BO >> BN >> BG >> BV >> AutoPromotion;
-	file_load >> Num_of_events;
-	srand(time(0));
-
 	//Intializing Cooks lists
 	Cook* CK;
 	for (int i = 0; i < numCVIP; i++) {
 		CK = new Cook(i + 1, TYPE_VIP);
 		CK->setSpeed(SV);
-		// Here I will put a function to puch every cook in his queue
+		CK->setBreakTime(BV);
+		AddtoavVIPCooks(CK);
 	}
 	for (int i = 0; i < numCVEG; i++) {
 		CK = new Cook(i + 1, TYPE_VGAN);
 		CK->setSpeed(SG);
-		// Here I will put a function to puch every cook in his queue
+		CK->setBreakTime(BG);
+		AddtoavVEGCooks(CK);
 	}
 	for (int i = 0; i < numCNOR; i++) {
 		CK = new Cook(i + 1, TYPE_NRM);
 		CK->setSpeed(SN);
-		// Here I will put a function to puch every cook in his queue
+		CK->setBreakTime(BN);
+		AddtoavNORCooks(CK);
 	}
 
-	Event* CurEvent; //pointer to event it points to any class object inherited from event as arrival,cancel and promote
-	ORD_TYPE CurOrderType; //as the arrival event's constructor needs a parameter from the typr ORD_Type
+	file_load >> Num_of_events;
 	char type; //to read the event type
-	int CurTime; int CurID; int CurType; double CurCost; int CurSize; double ExMoney; //variables to read from the file
+	enum CurROType {N, G, C, M, V}dir;
+	char CurReadOrderType; // to read Order type
+	ORD_TYPE CurOrderType; //as the arrival event's constructor needs a parameter from the typr ORD_Type
+	int CurTime; int CurID; int CurSize; double CurCost; //variables to read from the file
+	Event* CurEvent; //pointer to event it points to any class object inherited from event as arrival,cancel and promote
+
+	// initializing Orders
 	for (int i = 0; i < Num_of_events; i++) {
 		file_load >> type;
 		switch (type)
 		{
 		case 'R':
-			file_load >> CurType >> CurTime >> CurID >> CurSize >> CurCost;
-			//CurOrderType = Restaurant::determineOrderType(CurType); here is a function to know the type of order I will add it after finishing resturant class
-			switch (CurOrderType)
+			file_load >> CurReadOrderType >> CurTime >> CurID >> CurSize >> CurCost;
+			switch (CurReadOrderType)
 			{
-			case TYPE_NRM:
-				//cNRMord++;
+			case N:
+				CurOrderType = TYPE_NRM;
 				break;
-			case TYPE_VGAN:
-				//cFROZord++;
+			case G:
+				CurOrderType = TYPE_VGAN;
 				break;
-			case TYPE_VIP:
-				//cVIPord++;
+			case C:
+				CurOrderType = TYPE_CHN;
+				break;
+			case M:
+				CurOrderType = TYPE_MEX;
+				break;
+			case V:
+				CurOrderType = TYPE_VIP;
 				break;
 			}
-			//CurEvent = new ArrivalEvent(CurTime, CurID, CurOrderType, CurCost, CurDist);
+			CurEvent = new ArrivalEvent(CurTime, CurID, CurOrderType, CurCost, CurSize);
 			break;
 		case 'X':
 			file_load >> CurTime >> CurID;
-			//CurEvent = new CancelEvent(CurTime, CurID); I will add it after finshing resturant class
+			//CurEvent = new CancelEvent(CurTime, CurID); 
 			break;
 		case 'P':
 			file_load >> CurTime >> CurID >> ExMoney;
 			//CurEvent = new PormoteEvent(CurTime, CurID, ExMoney);
 			break;
 		}
-		//EventsQueue.rversedenqueue(CurEvent, CurTime);
+		EventsQueue.enqueue(CurEvent);
 	}
 	file_load.close();
 }
@@ -162,26 +164,9 @@ void Restaurant::SIMULATE()
 	
 	Event* pEv;
 	Order* pOrd;
-	srand(time(NULL));
-		
-	//Just for sake of demo, generate some cooks and add them to the drawing list
-	//In next phases, Cooks info should be loaded from input file
-	int C_count = 12;	
-	Cook *pC = new Cook[C_count];
-	int cID = 1;
-
-	for(int i=0; i<C_count; i++)
-	{
-		cID+= (rand()%15+1);	
-		pC[i].setID(cID);
-		pC[i].setType((ORD_TYPE)(rand()%TYPE_CNT));
-	}	
-
-		
+	srand(time(NULL));		
 	int EvTime = 0;
-
-	int O_id = 1;
-	
+	int O_id = 1;	
 	//Create Random events and fill them into EventsQueue
 	//All generated event will be "ArrivalEvents" for the demo
 	for(int i=0; i<EventCnt; i++)
@@ -194,13 +179,6 @@ void Restaurant::SIMULATE()
 
 	}	
 
-	// --->   In next phases, no random generation is done
-	// --->       EventsQueue should be filled from actual events loaded from input file
-
-	
-	
-	
-	
 	//Now We have filled EventsQueue (randomly)
 	int CurrentTimeStep = 1;
 	
@@ -317,43 +295,43 @@ void Restaurant::AddtodoneOrders(Order* ptr)
 {
 }
 
-void Restaurant::AddtoavNORCooks(Order* ptr)
+void Restaurant::AddtoavNORCooks(Cook* ptr)
 {
 }
 
-void Restaurant::AddtoavVEGCooks(Order* ptr)
+void Restaurant::AddtoavVEGCooks(Cook* ptr)
 {
 }
 
-void Restaurant::AddtoavCHNCooks(Order* ptr)
+void Restaurant::AddtoavCHNCooks(Cook* ptr)
 {
 }
 
-void Restaurant::AddtoavMEXCooks(Order* ptr)
+void Restaurant::AddtoavMEXCooks(Cook* ptr)
 {
 }
 
-void Restaurant::AddtoavVIPCooks(Order* ptr)
+void Restaurant::AddtoavVIPCooks(Cook* ptr)
 {
 }
 
-void Restaurant::AddtonavNORCooks(Order* ptr)
+void Restaurant::AddtonavNORCooks(Cook* ptr)
 {
 }
 
-void Restaurant::AddtonavVEGCooks(Order* ptr)
+void Restaurant::AddtonavVEGCooks(Cook* ptr)
 {
 }
 
-void Restaurant::AddtonavCHNCooks(Order* ptr)
+void Restaurant::AddtonavCHNCooks(Cook* ptr)
 {
 }
 
-void Restaurant::AddtonavMEXCooks(Order* ptr)
+void Restaurant::AddtonavMEXCooks(Cook* ptr)
 {
 }
 
-void Restaurant::AddtonavVIPCooks(Order* ptr)
+void Restaurant::AddtonavVIPCooks(Cook* ptr)
 {
 }
 
@@ -401,43 +379,43 @@ void Restaurant::rmvdoneOrders(Order* ptr)
 {
 }
 
-void Restaurant::rmvavNORCooks(Order* ptr)
+void Restaurant::rmvavNORCooks(Cook* ptr)
 {
 }
 
-void Restaurant::rmvavVEGCooks(Order* ptr)
+void Restaurant::rmvavVEGCooks(Cook* ptr)
 {
 }
 
-void Restaurant::rmvavCHNCooks(Order* ptr)
+void Restaurant::rmvavCHNCooks(Cook* ptr)
 {
 }
 
-void Restaurant::rmvavMEXCooks(Order* ptr)
+void Restaurant::rmvavMEXCooks(Cook* ptr)
 {
 }
 
-void Restaurant::rmvavVIPCooks(Order* ptr)
+void Restaurant::rmvavVIPCooks(Cook* ptr)
 {
 }
 
-void Restaurant::rmvnavNORCooks(Order* ptr)
+void Restaurant::rmvnavNORCooks(Cook* ptr)
 {
 }
 
-void Restaurant::rmvnavVEGCooks(Order* ptr)
+void Restaurant::rmvnavVEGCooks(Cook* ptr)
 {
 }
 
-void Restaurant::rmvnavCHNCooks(Order* ptr)
+void Restaurant::rmvnavCHNCooks(Cook* ptr)
 {
 }
 
-void Restaurant::rmvnavMEXCooks(Order* ptr)
+void Restaurant::rmvnavMEXCooks(Cook* ptr)
 {
 }
 
-void Restaurant::rmvnavVIPCooks(Order* ptr)
+void Restaurant::rmvnavVIPCooks(Cook* ptr)
 {
 }
 

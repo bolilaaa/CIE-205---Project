@@ -91,18 +91,18 @@ public:
 
 	void AddtodoneOrders(Order* ptr);
 
-	void AddtoavNORCooks(Order* ptr);
-	void AddtoavVEGCooks(Order* ptr);
-	void AddtoavCHNCooks(Order* ptr);
-	void AddtoavMEXCooks(Order* ptr);
-	void AddtoavVIPCooks(Order* ptr);
+	void AddtoavNORCooks(Cook* ptr);
+	void AddtoavVEGCooks(Cook* ptr);
+	void AddtoavCHNCooks(Cook* ptr);
+	void AddtoavMEXCooks(Cook* ptr);
+	void AddtoavVIPCooks(Cook* ptr);
 
 
-	void AddtonavNORCooks(Order* ptr);
-	void AddtonavVEGCooks(Order* ptr);
-	void AddtonavCHNCooks(Order* ptr);
-	void AddtonavMEXCooks(Order* ptr);
-	void AddtonavVIPCooks(Order* ptr);
+	void AddtonavNORCooks(Cook* ptr);
+	void AddtonavVEGCooks(Cook* ptr);
+	void AddtonavCHNCooks(Cook* ptr);
+	void AddtonavMEXCooks(Cook* ptr);
+	void AddtonavVIPCooks(Cook* ptr);
 
 	/// remove from the lists ///
 	void rmvwaitingNOROrders(Order* ptr);
@@ -121,17 +121,17 @@ public:
 
 	void rmvdoneOrders(Order* ptr);
 
-	void rmvavNORCooks(Order* ptr);
-	void rmvavVEGCooks(Order* ptr);
-	void rmvavCHNCooks(Order* ptr);
-	void rmvavMEXCooks(Order* ptr);
-	void rmvavVIPCooks(Order* ptr);
+	void rmvavNORCooks(Cook* ptr);
+	void rmvavVEGCooks(Cook* ptr);
+	void rmvavCHNCooks(Cook* ptr);
+	void rmvavMEXCooks(Cook* ptr);
+	void rmvavVIPCooks(Cook* ptr);
 
-	void rmvnavNORCooks(Order* ptr);
-	void rmvnavVEGCooks(Order* ptr);
-	void rmvnavCHNCooks(Order* ptr);
-	void rmvnavMEXCooks(Order* ptr);
-	void rmvnavVIPCooks(Order* ptr);
+	void rmvnavNORCooks(Cook* ptr);
+	void rmvnavVEGCooks(Cook* ptr);
+	void rmvnavCHNCooks(Cook* ptr);
+	void rmvnavMEXCooks(Cook* ptr);
+	void rmvnavVIPCooks(Cook* ptr);
 };
 
 #endif

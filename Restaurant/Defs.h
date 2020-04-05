@@ -9,6 +9,8 @@ enum ORD_TYPE	//types of orders
 {
 	TYPE_NRM,	//normal order
 	TYPE_VGAN,	//vegan
+	TYPE_CHN,	//chinese
+	TYPE_MEX,	//mexican
 	TYPE_VIP,	//VIP
 	TYPE_CNT	//Number of types
 
