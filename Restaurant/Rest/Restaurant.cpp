@@ -151,7 +151,22 @@ void Restaurant::LoadAll(string filename) {
 
 void Restaurant::SIMULATE()
 {
-	
+	//while (!StopRunning)
+	//{
+	//	//VIP Order
+	//	if (!waitingVIPOrders.empty()) {
+	//		if (!avVIPCooks.isEmpty())
+	//		{
+	//			rmvwaitingVIPOrders(pOrd);
+	//			pOrd->setStatus(SRV);
+	//			AddtosrvVIPOrders(pOrd);
+
+	//			rmvavVIPCooks;
+	//		}
+
+	//	}
+	//}
+
 	//
 	// THIS IS JUST A DEMO FUNCTION
 	// IT SHOULD BE REMOVED IN PHASE 1 AND PHASE 2
@@ -267,15 +282,15 @@ void Restaurant::AddtowaitingVEGOrders(Order* ptr)
 {
 }
 
+void Restaurant::AddtowaitingCHNOrders(Order* ptr)
+{
+}
+
+void Restaurant::AddtowaitingMEXOrders(Order* ptr)
+{
+}
+
 void Restaurant::AddtowaitingVIPOrders(Order* ptr)
-{
-}
-
-void Restaurant::AddtowaitingOR1Orders(Order* ptr)
-{
-}
-
-void Restaurant::AddtowaitingOR2Orders(Order* ptr)
 {
 }
 
@@ -287,15 +302,15 @@ void Restaurant::AddtosrvVEGOrders(Order* ptr)
 {
 }
 
+void Restaurant::AddtosrvCHNOrders(Order* ptr)
+{
+}
+
+void Restaurant::AddtosrvMEXOrders(Order* ptr)
+{
+}
+
 void Restaurant::AddtosrvVIPOrders(Order* ptr)
-{
-}
-
-void Restaurant::AddtosrvOR1Orders(Order* ptr)
-{
-}
-
-void Restaurant::AddtosrvOR2Orders(Order* ptr)
 {
 }
 
@@ -311,15 +326,15 @@ void Restaurant::AddtoavVEGCooks(Order* ptr)
 {
 }
 
+void Restaurant::AddtoavCHNCooks(Order* ptr)
+{
+}
+
+void Restaurant::AddtoavMEXCooks(Order* ptr)
+{
+}
+
 void Restaurant::AddtoavVIPCooks(Order* ptr)
-{
-}
-
-void Restaurant::AddtoavOR1Cooks(Order* ptr)
-{
-}
-
-void Restaurant::AddtoavOR2Cooks(Order* ptr)
 {
 }
 
@@ -331,15 +346,15 @@ void Restaurant::AddtonavVEGCooks(Order* ptr)
 {
 }
 
+void Restaurant::AddtonavCHNCooks(Order* ptr)
+{
+}
+
+void Restaurant::AddtonavMEXCooks(Order* ptr)
+{
+}
+
 void Restaurant::AddtonavVIPCooks(Order* ptr)
-{
-}
-
-void Restaurant::AddtonavOR1Cooks(Order* ptr)
-{
-}
-
-void Restaurant::AddtonavOR2Cooks(Order* ptr)
 {
 }
 
@@ -351,15 +366,15 @@ void Restaurant::rmvwaitingVEGOrders(Order* ptr)
 {
 }
 
+void Restaurant::rmvwaitingCHNOrders(Order* ptr)
+{
+}
+
+void Restaurant::rmvwaitingMEXOrders(Order* ptr)
+{
+}
+
 void Restaurant::rmvwaitingVIPOrders(Order* ptr)
-{
-}
-
-void Restaurant::rmvwaitingOR1Orders(Order* ptr)
-{
-}
-
-void Restaurant::rmvwaitingOR2Orders(Order* ptr)
 {
 }
 
@@ -371,71 +386,60 @@ void Restaurant::rmvsrvVEGOrders(Order* ptr)
 {
 }
 
+void Restaurant::rmvsrvCHNOrders(Order* ptr)
+{
+}
+
+void Restaurant::rmvsrvMEXOrders(Order* ptr)
+{
+}
+
 void Restaurant::rmvsrvVIPOrders(Order* ptr)
-{
-}
-
-void Restaurant::rmvsrvOR1Orders(Order* ptr)
-{
-}
-
-void Restaurant::rmvsrvOR2Orders(Order* ptr)
 {
 }
 
 void Restaurant::rmvdoneOrders(Order* ptr)
 {
-	doneOrders.dequeue(ptr);
 }
 
 void Restaurant::rmvavNORCooks(Order* ptr)
 {
-	avNORCooks.dequeue(ptr);
 }
 
 void Restaurant::rmvavVEGCooks(Order* ptr)
 {
-	avVEGCooks.dequeue(ptr);
+}
+
+void Restaurant::rmvavCHNCooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvavMEXCooks(Order* ptr)
+{
 }
 
 void Restaurant::rmvavVIPCooks(Order* ptr)
 {
-	avOR1Cooks.dequeue(ptr);
-}
-
-void Restaurant::rmvavOR1Cooks(Order* ptr)
-{
-	avOR2Cooks.dequeue(ptr);
-}
-
-void Restaurant::rmvavOR2Cooks(Order* ptr)
-{
-	avOR2Cooks.dequeue(ptr);
 }
 
 void Restaurant::rmvnavNORCooks(Order* ptr)
 {
-	navNORCooks.dequeue(ptr);
 }
 
 void Restaurant::rmvnavVEGCooks(Order* ptr)
 {
-	navVEGCooks.dequeue(ptr);
+}
+
+void Restaurant::rmvnavCHNCooks(Order* ptr)
+{
+}
+
+void Restaurant::rmvnavMEXCooks(Order* ptr)
+{
 }
 
 void Restaurant::rmvnavVIPCooks(Order* ptr)
 {
-	navVIPCooks.dequeue(ptr);
-}
-
-void Restaurant::rmvnavOR1Cooks(Order* ptr)
-{
-	navOR1Cooks.dequeue(ptr);
-}
-
-void Restaurant::rmvnavOR2Cooks(Order* ptr)
-{
-	navOR2Cooks.dequeue(ptr);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
