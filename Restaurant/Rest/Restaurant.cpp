@@ -157,7 +157,7 @@ void Restaurant::SIMULATE()
 	pGUI->PrintMessage("Simulation Mode. Enter INPUT file name:");
 	filename = pGUI->GetString().c_str();	//get user input as a string
 	LoadAll(filename);
-	pGUI->PrintMessage("CLICK to continue");
+	pGUI->PrintMessage("CLICK to start");
 	pGUI->waitForClick();
 
 	//Now let's start the simulation
@@ -216,7 +216,8 @@ void Restaurant::SIMULATE()
 			}
 		}
 
-		if (CurrentTimeStep % 5 == 0) // Each 5 seconds remove orders to done and cooks to available
+		// Each 5 seconds remove orders to done and cooks to available
+		if (CurrentTimeStep % 5 == 0) 
 		{
 			// Normal
 			if (!navNORCooks.empty())
@@ -225,7 +226,7 @@ void Restaurant::SIMULATE()
 				if (CurrentTimeStep % pCook->getSpeed() == 0)
 				{
 					pCook->setdOrders(pCook->getdOrders() + 1);
-					// move cooks
+					// move cook
 					if (pCook->getdOrders() % 5) // to be modified to number of orders after which is break
 					{
 						pCook->setStatus(BRK);
@@ -269,6 +270,22 @@ void Restaurant::SIMULATE()
 			}
 		}
 
+		// getting back to work out of the break
+		if (!brkNORCooks.empty())
+		{
+			pCook = navNORCooks.top();
+			if (pCook->getBreakTime() == pCook->getBreakCount())
+			{
+				// move cook
+				pCook->setStatus(AV);
+				avNORCooks.push(pCook);
+				pCook->setBreakCount(0);
+			}
+			else
+			{
+				brkNORCooks.emplace(pCook);
+			}
+		}
 
 		FillDrawingList();
 		pGUI->UpdateInterface();
@@ -276,8 +293,6 @@ void Restaurant::SIMULATE()
 		CurrentTimeStep++;	//advance timestep
 		pGUI->ResetDrawingList();
 	}
-
-	delete []pC;
 
 	pGUI->PrintMessage("generation done, click to END program");
 	pGUI->waitForClick();
