@@ -11,6 +11,7 @@ class Cook
 	int speed;		// dishes it can prepare in one clock tick (in one timestep)
 	int breaktime;  // break after serving n consecutive orders.
 	COOK_STATUS status; // for each cook there is a corresponding status (Available, in-available)
+	int dOrders;
 	Order* assignedOrder;
 	double priority; 
 
@@ -25,6 +26,7 @@ public:
 	int getSpeed() const;
 	int getBreakTime() const;
 	COOK_STATUS getStatus() const;
+	int getdOrders() const;
 	Order* getAOrder() const;
 	double getPriority() const;
 
@@ -35,6 +37,7 @@ public:
 	void setSpeed(int sp);
 	void setBreakTime(int bt);
 	void setStatus(COOK_STATUS);
+	void setdOrders(int);
 	void setAOrder(Order*& pOrd);
 	void setPriority(double r);
 };

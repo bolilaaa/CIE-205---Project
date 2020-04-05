@@ -222,13 +222,20 @@ void Restaurant::SIMULATE()
 			if (!navNORCooks.empty())
 			{
 				pCook = navNORCooks.top();
-				if (CurrentTimeStep % pCook->getSpeed() == 0) // to be modified
+				if (CurrentTimeStep % pCook->getSpeed() == 0)
 				{
+					pCook->setdOrders(pCook->getdOrders() + 1);
 					// move cooks
-					pCook->setStatus(AV);
-					// if need break (to be modified)
-					avNORCooks.push(pCook);
-
+					if (pCook->getdOrders() % 5) // to be modified to number of orders after which is break
+					{
+						pCook->setStatus(BRK);
+						brkNORCooks.push(pCook);
+					}
+					else
+					{
+						pCook->setStatus(AV);
+						avNORCooks.push(pCook);
+					}
 					// move order
 					pOrd = pCook->getAOrder();
 					rmvsrvNOROrders(pOrd);
@@ -241,64 +248,11 @@ void Restaurant::SIMULATE()
 				}
 			}
 			
-			
-			
-			
-			
-			if (!srvNOROrders.isEmpty())
-			{
-				// move orders
-				rmvsrvNOROrders(pOrd);
-				pOrd->setStatus(DONE);
-				AddtodoneOrders(pOrd);
-
-				// move cooks
-				rmvnavNORCooks(pCook);
-				pCook->setStatus(AV);
-				AddtoavNORCooks(pCook);
-			}
-
 			// Vegan
-			if (!srvNOROrders.isEmpty())
-			{
-				// move orders
-				rmvsrvVEGOrders(pOrd);
-				pOrd->setStatus(DONE);
-				AddtodoneOrders(pOrd);
-
-				// move cooks
-				rmvnavVEGCooks(pCook);
-				pCook->setStatus(AV);
-				AddtoavVEGCooks(pCook);
-			}
 
 			// Chinese
-			if (!srvCHNOrders.isEmpty())
-			{
-				// move orders
-				rmvsrvCHNOrders(pOrd);
-				pOrd->setStatus(DONE);
-				AddtodoneOrders(pOrd);
-
-				// move cooks
-				rmvnavCHNCooks(pCook);
-				pCook->setStatus(AV);
-				AddtoavCHNCooks(pCook);
-			}
 
 			// Mexican
-			if (!srvMEXOrders.isEmpty())
-			{
-				// move orders
-				rmvsrvMEXOrders(pOrd);
-				pOrd->setStatus(DONE);
-				AddtodoneOrders(pOrd);
-
-				// move cooks
-				rmvnavMEXCooks(pCook);
-				pCook->setStatus(AV);
-				AddtoavMEXCooks(pCook);
-			}
 			
 			// VIP
 			if (!srvVIPOrders.isEmpty())

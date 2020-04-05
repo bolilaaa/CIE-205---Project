@@ -42,6 +42,11 @@ COOK_STATUS Cook::getStatus() const
 	return COOK_STATUS();
 }
 
+int Cook::getdOrders() const
+{
+	return dOrders;
+}
+
 Order* Cook::getAOrder() const
 {
 	return assignedOrder;
@@ -78,6 +83,11 @@ void Cook::setBreakTime(int bt)
 void Cook::setStatus(COOK_STATUS cs)
 {
 	status = cs;
+}
+
+void Cook::setdOrders(int dOr)
+{
+	dOrders = dOr;
 }
 
 void Cook::setAOrder(Order*& pOrd)

@@ -26,8 +26,9 @@ enum ORD_STATUS	//order status
 
 enum COOK_STATUS	//order status
 {
-	AV,	//Available
+	AV,		//Available
 	NAV,	//In-Available
+	BRK,		//Break
 };
 
 enum PROG_MODE	//mode of the program interface
