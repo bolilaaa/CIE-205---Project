@@ -42,6 +42,16 @@ COOK_STATUS Cook::getStatus() const
 	return COOK_STATUS();
 }
 
+Order* Cook::getAOrder() const
+{
+	return assignedOrder;
+}
+
+double Cook::getPriority() const
+{
+	return priority;
+}
+
 
 void Cook::setID(int id)
 {
@@ -68,4 +78,14 @@ void Cook::setBreakTime(int bt)
 void Cook::setStatus(COOK_STATUS cs)
 {
 	status = cs;
+}
+
+void Cook::setAOrder(Order*& pOrd)
+{
+	assignedOrder = pOrd;
+}
+
+void Cook::setPriority(double r)
+{
+	priority = r;
 }

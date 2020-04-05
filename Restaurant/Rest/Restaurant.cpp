@@ -175,7 +175,7 @@ void Restaurant::SIMULATE()
 		/// VIP orders
 		if (!waitingVIPOrders.empty()) 
 		{
-			if (!avVIPCooks.isEmpty())
+			if (!avVIPCooks.empty())
 			{
 				// move orders
 				rmvwaitingVIPOrders(pOrd);
@@ -185,9 +185,10 @@ void Restaurant::SIMULATE()
 				// move cooks
 				rmvavVIPCooks(pCook);
 				pCook->setStatus(NAV);
+				pCook->setAOrder(pOrd);
 				AddtonavVIPCooks(pCook);
 			}
-			else if (!avNORCooks.isEmpty())
+			else if (!avNORCooks.empty())
 			{
 				// move orders
 				rmvwaitingVIPOrders(pOrd);
@@ -197,9 +198,10 @@ void Restaurant::SIMULATE()
 				// move cooks
 				rmvavNORCooks(pCook);
 				pCook->setStatus(NAV);
+				pCook->setAOrder(pOrd);
 				AddtonavNORCooks(pCook);
 			}
-			else if (!avVEGCooks.isEmpty())
+			else if (!avVEGCooks.empty())
 			{
 				// move orders
 				rmvwaitingVIPOrders(pOrd);
@@ -209,6 +211,7 @@ void Restaurant::SIMULATE()
 				// move cooks
 				rmvavVEGCooks(pCook);
 				pCook->setStatus(NAV);
+				pCook->setAOrder(pOrd);
 				AddtonavVEGCooks(pCook);
 			}
 		}
@@ -216,6 +219,32 @@ void Restaurant::SIMULATE()
 		if (CurrentTimeStep % 5 == 0) // Each 5 seconds remove orders to done and cooks to available
 		{
 			// Normal
+			if (!navNORCooks.empty())
+			{
+				pCook = navNORCooks.top();
+				if (CurrentTimeStep % pCook->getSpeed() == 0) // to be modified
+				{
+					// move cooks
+					pCook->setStatus(AV);
+					// if need break (to be modified)
+					avNORCooks.push(pCook);
+
+					// move order
+					pOrd = pCook->getAOrder();
+					rmvsrvNOROrders(pOrd);
+					pOrd->setStatus(DONE);
+					AddtodoneOrders(pOrd);
+				}
+				else
+				{
+					navNORCooks.emplace(pCook);
+				}
+			}
+			
+			
+			
+			
+			
 			if (!srvNOROrders.isEmpty())
 			{
 				// move orders

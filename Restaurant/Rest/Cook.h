@@ -1,6 +1,7 @@
 #pragma once
 
 #include "..\Defs.h"
+#include "Order.h"
 
 #pragma once
 class Cook
@@ -10,24 +11,30 @@ class Cook
 	int speed;		// dishes it can prepare in one clock tick (in one timestep)
 	int breaktime;  // break after serving n consecutive orders.
 	COOK_STATUS status; // for each cook there is a corresponding status (Available, in-available)
+	Order* assignedOrder;
+	double priority; 
 
 public:
 	Cook();
 	Cook(int ID, ORD_TYPE type);
 	virtual ~Cook();
 
-	// setters
+	// getters
 	int GetID() const;
 	ORD_TYPE GetType() const;
 	int getSpeed() const;
 	int getBreakTime() const;
 	COOK_STATUS getStatus() const;
+	Order* getAOrder() const;
+	double getPriority() const;
 
 
-	// getters
+	// setters
 	void setID(int);
 	void setType(ORD_TYPE) ;
 	void setSpeed(int sp);
 	void setBreakTime(int bt);
 	void setStatus(COOK_STATUS);
+	void setAOrder(Order*& pOrd);
+	void setPriority(double r);
 };

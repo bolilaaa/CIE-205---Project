@@ -11,7 +11,9 @@
 #include "Cook.h"
 
 #include <queue>
-#include "..\ComparePri.h"
+#include "..\CompareOPri.h"
+#include "..\Generic_DS\CompareCPri.h"
+
 
 // it is the maestro of the project
 class Restaurant  
@@ -30,7 +32,7 @@ private:
 	Queue<Order*> waitingVEGOrders;	// List of waiting vegan orders
 	Queue<Order*> waitingCHNOrders;	// List of waiting additional chinese
 	Queue<Order*> waitingMEXOrders;	// List of waiting additional mexican
-	priority_queue<Order*, vector<Order*>, ComparePri> waitingVIPOrders;	// List of waiting VIP orders
+	priority_queue<Order*, vector<Order*>, CompareOPri> waitingVIPOrders;	// List of waiting VIP orders
 
 	//// in service ////
 	Queue<Order*> srvNOROrders;	// List of in service normal orders
@@ -47,18 +49,18 @@ private:
 	////////////////////////////////// Cooks //////////////////////////////////
 
 	//// available ////
-	Queue<Order*> avNORCooks;	// List of available normal cooks
-	Queue<Order*> avVEGCooks;	// List of available vegan cooks
-	Queue<Order*> avCHNCooks;	// List of available additional type 1 cooks
-	Queue<Order*> avMEXCooks;	// List of available additional type 2 cooks
-	Queue<Order*> avVIPCooks;	// List of available VIP cooks
+	priority_queue<Cook*, vector<Cook*>, CompareCPri> avNORCooks;	// List of available normal cooks
+	priority_queue<Cook*, vector<Cook*>, CompareCPri> avVEGCooks;	// List of available vegan cooks
+	priority_queue<Cook*, vector<Cook*>, CompareCPri> avCHNCooks;	// List of available additional type 1 cooks
+	priority_queue<Cook*, vector<Cook*>, CompareCPri> avMEXCooks;	// List of available additional type 2 cooks
+	priority_queue<Cook*, vector<Cook*>, CompareCPri> avVIPCooks;	// List of available VIP cooks
 
 	//// in-available ////
-	Queue<Order*> navNORCooks;	// List of in-available normal cooks
-	Queue<Order*> navVEGCooks;	// List of in-available vegan cooks
-	Queue<Order*> navCHNCooks;	// List of in-available additional chinese cooks
-	Queue<Order*> navMEXCooks;	// List of in-available additional mexican cooks
-	Queue<Order*> navVIPCooks;	// List of in-available VIP cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> navNORCooks;	// List of in-available normal cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> navVEGCooks;	// List of in-available vegan cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> navCHNCooks;	// List of in-available additional chinese cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> navMEXCooks;	// List of in-available additional mexican cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> navVIPCooks;	// List of in-available VIP cooks
 
 	///////////////////////////////////////////////////////////////////////////
 
