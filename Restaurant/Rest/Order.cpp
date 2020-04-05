@@ -95,6 +95,10 @@ void Order::increamentWaitTime() {
 }
 
 
+int Order::getArrivalTime() const
+{
+	return ArrTime;
+}
 
 
 

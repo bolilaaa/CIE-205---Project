@@ -55,7 +55,17 @@ void Restaurant::ExecuteEvents(int CurrentTimeStep)
 	}
 
 }
+//
+void Restaurant::PromoteEvents(int TimeStep)
+{
 
+}
+//
+void Restaurant::CancelEvents(int TimeStep)
+{
+
+}
+//
 Restaurant::~Restaurant()
 {
 		if (pGUI)

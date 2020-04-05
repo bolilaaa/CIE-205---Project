@@ -67,6 +67,9 @@ public:
 	~Restaurant();
 	/// general operations ///
 	void ExecuteEvents(int TimeStep);	//executes all events at current timestep
+	void PromoteEvents(int TimeStep);
+	void CancelEvents(int TimeStep);
+
 	void RunSimulation();
 	void FillDrawingList();
 	void LoadAll(string filename);

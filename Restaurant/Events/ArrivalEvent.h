@@ -15,8 +15,11 @@ public:
 	ArrivalEvent(int eTime, int oID, ORD_TYPE oType);
 	//Add more constructors if needed
 	
-	virtual void Execute(Restaurant *pRest);	//override execute function
+	virtual void Execute(Restaurant* ptr);		//override execute function
+	virtual void Promote(Restaurant* ptr);		//override promote function
+	virtual void Cancel(Restaurant* ptr);		//override cancel function
 
 };
+
 
 #endif

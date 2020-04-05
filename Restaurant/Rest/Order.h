@@ -43,6 +43,7 @@ public:
 	int GetDistance() const;
 	ORD_STATUS getStatus() const;
 
+	int getArrivalTime() const;
 	int getServTime() const;
 	int getFinishTime() const;
 	int getWaitTime() const;
