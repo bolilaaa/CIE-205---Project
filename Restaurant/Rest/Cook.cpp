@@ -37,6 +37,31 @@ int Cook::getBreakTime() const
 	return breaktime;
 }
 
+int Cook::getBreakCount() const
+{
+	return breakcount;
+}
+
+COOK_STATUS Cook::getStatus() const
+{
+	return COOK_STATUS();
+}
+
+int Cook::getdOrders() const
+{
+	return dOrders;
+}
+
+Order* Cook::getAOrder() const
+{
+	return assignedOrder;
+}
+
+double Cook::getPriority() const
+{
+	return priority;
+}
+
 
 void Cook::setID(int id)
 {
@@ -58,4 +83,29 @@ void Cook::setSpeed(int sp)
 void Cook::setBreakTime(int bt)
 {
 	breaktime = bt;
+}
+
+void Cook::setBreakCount(int bt)
+{
+	breakcount = bt;
+}
+
+void Cook::setStatus(COOK_STATUS cs)
+{
+	status = cs;
+}
+
+void Cook::setdOrders(int dOr)
+{
+	dOrders = dOr;
+}
+
+void Cook::setAOrder(Order*& pOrd)
+{
+	assignedOrder = pOrd;
+}
+
+void Cook::setPriority(double r)
+{
+	priority = r;
 }

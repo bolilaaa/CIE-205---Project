@@ -11,7 +11,9 @@
 #include "Cook.h"
 
 #include <queue>
-#include "..\ComparePri.h"
+#include "..\CompareOPri.h"
+#include "..\Generic_DS\CompareCPri.h"
+
 
 // it is the maestro of the project
 class Restaurant  
@@ -30,7 +32,7 @@ private:
 	Queue<Order*> waitingVEGOrders;	// List of waiting vegan orders
 	Queue<Order*> waitingCHNOrders;	// List of waiting additional chinese
 	Queue<Order*> waitingMEXOrders;	// List of waiting additional mexican
-	priority_queue<Order*, vector<Order*>, ComparePri> waitingVIPOrders;	// List of waiting VIP orders
+	priority_queue<Order*, vector<Order*>, CompareOPri> waitingVIPOrders;	// List of waiting VIP orders
 
 	//// in service ////
 	Queue<Order*> srvNOROrders;	// List of in service normal orders
@@ -47,18 +49,25 @@ private:
 	////////////////////////////////// Cooks //////////////////////////////////
 
 	//// available ////
-	Queue<Order*> avNORCooks;	// List of available normal cooks
-	Queue<Order*> avVEGCooks;	// List of available vegan cooks
-	Queue<Order*> avCHNCooks;	// List of available additional type 1 cooks
-	Queue<Order*> avMEXCooks;	// List of available additional type 2 cooks
-	Queue<Order*> avVIPCooks;	// List of available VIP cooks
+	priority_queue<Cook*, vector<Cook*>, CompareCPri> avNORCooks;	// List of available normal cooks
+	priority_queue<Cook*, vector<Cook*>, CompareCPri> avVEGCooks;	// List of available vegan cooks
+	priority_queue<Cook*, vector<Cook*>, CompareCPri> avCHNCooks;	// List of available additional type 1 cooks
+	priority_queue<Cook*, vector<Cook*>, CompareCPri> avMEXCooks;	// List of available additional type 2 cooks
+	priority_queue<Cook*, vector<Cook*>, CompareCPri> avVIPCooks;	// List of available VIP cooks
 
 	//// in-available ////
-	Queue<Order*> navNORCooks;	// List of in-available normal cooks
-	Queue<Order*> navVEGCooks;	// List of in-available vegan cooks
-	Queue<Order*> navCHNCooks;	// List of in-available additional chinese cooks
-	Queue<Order*> navMEXCooks;	// List of in-available additional mexican cooks
-	Queue<Order*> navVIPCooks;	// List of in-available VIP cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> navNORCooks;	// List of in-available normal cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> navVEGCooks;	// List of in-available vegan cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> navCHNCooks;	// List of in-available additional chinese cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> navMEXCooks;	// List of in-available additional mexican cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> navVIPCooks;	// List of in-available VIP cooks
+
+	//// break ////
+	priority_queue<Order*, vector<Cook*>, CompareCPri> brkNORCooks;	// List of in-available normal cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> brkVEGCooks;	// List of in-available vegan cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> brkCHNCooks;	// List of in-available additional chinese cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> brkMEXCooks;	// List of in-available additional mexican cooks
+	priority_queue<Order*, vector<Cook*>, CompareCPri> brkVIPCooks;	// List of in-available VIP cooks
 
 	///////////////////////////////////////////////////////////////////////////
 
@@ -94,18 +103,18 @@ public:
 
 	void AddtodoneOrders(Order* ptr);
 
-	void AddtoavNORCooks(Order* ptr);
-	void AddtoavVEGCooks(Order* ptr);
-	void AddtoavCHNCooks(Order* ptr);
-	void AddtoavMEXCooks(Order* ptr);
-	void AddtoavVIPCooks(Order* ptr);
+	void AddtoavNORCooks(Cook* ptr);
+	void AddtoavVEGCooks(Cook* ptr);
+	void AddtoavCHNCooks(Cook* ptr);
+	void AddtoavMEXCooks(Cook* ptr);
+	void AddtoavVIPCooks(Cook* ptr);
 
 
-	void AddtonavNORCooks(Order* ptr);
-	void AddtonavVEGCooks(Order* ptr);
-	void AddtonavCHNCooks(Order* ptr);
-	void AddtonavMEXCooks(Order* ptr);
-	void AddtonavVIPCooks(Order* ptr);
+	void AddtonavNORCooks(Cook* ptr);
+	void AddtonavVEGCooks(Cook* ptr);
+	void AddtonavCHNCooks(Cook* ptr);
+	void AddtonavMEXCooks(Cook* ptr);
+	void AddtonavVIPCooks(Cook* ptr);
 
 	/// remove from the lists ///
 	void rmvwaitingNOROrders(Order* ptr);
@@ -124,17 +133,17 @@ public:
 
 	void rmvdoneOrders(Order* ptr);
 
-	void rmvavNORCooks(Order* ptr);
-	void rmvavVEGCooks(Order* ptr);
-	void rmvavCHNCooks(Order* ptr);
-	void rmvavMEXCooks(Order* ptr);
-	void rmvavVIPCooks(Order* ptr);
+	void rmvavNORCooks(Cook* ptr);
+	void rmvavVEGCooks(Cook* ptr);
+	void rmvavCHNCooks(Cook* ptr);
+	void rmvavMEXCooks(Cook* ptr);
+	void rmvavVIPCooks(Cook* ptr);
 
-	void rmvnavNORCooks(Order* ptr);
-	void rmvnavVEGCooks(Order* ptr);
-	void rmvnavCHNCooks(Order* ptr);
-	void rmvnavMEXCooks(Order* ptr);
-	void rmvnavVIPCooks(Order* ptr);
+	void rmvnavNORCooks(Cook* ptr);
+	void rmvnavVEGCooks(Cook* ptr);
+	void rmvnavCHNCooks(Cook* ptr);
+	void rmvnavMEXCooks(Cook* ptr);
+	void rmvnavVIPCooks(Cook* ptr);
 };
 
 #endif
