@@ -10,10 +10,10 @@ protected:
 	int ID;         //Each order has a unique ID (from 1 --> 999 )
 	ORD_TYPE type;		//order type: Normal, vegan, VIP
 	ORD_STATUS status;	//waiting, in-service, done
-	int Distance;	//The distance (in meters) between the order location and the resturant              
 	double totalMoney;	//Total order money
 	int ArrTime, ServTime, FinishTime, WaitTime = 0;	//arrival, service start, and finish times
 	double priority; // added // 
+	int size;
 	
 	//
 	// TODO: Add More Data Members As Needed
@@ -25,7 +25,6 @@ public:
 	virtual ~Order();
 
 	//Setters // 
-	void SetDistance(int d);
 	void setStatus(ORD_STATUS s);
 
 	void Setpriority(double r);
@@ -40,7 +39,6 @@ public:
 	// Getters //
 	int GetID();
 	ORD_TYPE GetType() const;
-	int GetDistance() const;
 	ORD_STATUS getStatus() const;
 
 	int getArrivalTime() const;
@@ -51,6 +49,7 @@ public:
 	double getSize() const; // mark // 
 	double getMoney() const; // price
 	double Getpriority() const;
+	int getSize() const;
 	void increamentWaitTime();
 };
 
