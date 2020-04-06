@@ -79,7 +79,73 @@ void Restaurant::FillDrawingList()
 	//It should get orders from orders lists/queues/stacks/whatever (same for Cooks)
 	//To add orders it should call function  void GUI::AddToDrawingList(Order* pOrd);
 	//To add Cooks it should call function  void GUI::AddToDrawingList(Cook* pCc);
+	Order* pOrd;
+	int size;
 
+	//Drawing Orders
+	Order** waitingveganOrdersArray = waitingVEGOrders.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(waitingveganOrdersArray[i]);
+
+	Order** waitingNormalOrdersArray = waitingNOROrders.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(waitingNormalOrdersArray[i]);
+
+	Order** waitingVIPOrdersArray = waitingVIPOrders.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(waitingVIPOrdersArray[i]);
+
+	Order** waitingchineseOrdersArray = waitingCHNOrders.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(waitingchineseOrdersArray[i]);
+	Order** waitingmexicanOrdersArray = waitingMEXOrders.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(waitingmexicanOrdersArray[i]);
+	//in service orders
+	Order** inserviceveganOrdersArray = srvVEGOrders.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(inserviceveganOrdersArray[i]);
+	Order** inservicenormalOrdersArray = srvNOROrders.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(inservicenormalOrdersArray[i]);
+	Order** inserviceVIPOrdersArray = srvVIPOrders.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(inserviceVIPOrdersArray[i]);
+	Order** inservicechineseOrdersArray = srvCHNOrders.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(inservicechineseOrdersArray[i]);
+	Order** inservicemexicanOrdersArray = srvMEXOrders.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(inservicemexicanOrdersArray[i]);
+
+	// done orders
+
+	Order** doneOrdersArray = doneOrders.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(doneOrdersArray[i]);
+
+	//Drawing available cooks
+	Cook** VEGcookarray = avVEGCooks.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(VEGcookarray[i]);
+
+	Cook** VIPcookarray = avVIPCooks.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(VIPcookarray[i]);
+
+	Cook** NORcookarray = avNORCooks.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(NORcookarray[i]);
+
+	Cook** CHNcookarray = avCHNCooks.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(CHNcookarray[i]);
+
+	Cook** MEXcookarray = avMEXCooks.toArray(size);
+	for (int i = 0; i < size; i++)
+		pGUI->AddToDrawingList(MEXcookarray[i]);
+
+	
 }
 
 void Restaurant::LoadAll(string filename) {
