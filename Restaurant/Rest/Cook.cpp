@@ -37,6 +37,11 @@ int Cook::getBreakTime() const
 	return breaktime;
 }
 
+int Cook::getBreakOrders() const
+{
+	return breakorders;
+}
+
 int Cook::getBreakCount() const
 {
 	return breakcount;
@@ -83,6 +88,11 @@ void Cook::setSpeed(int sp)
 void Cook::setBreakTime(int bt)
 {
 	breaktime = bt;
+}
+
+void Cook::setBreakOrders(int bt)
+{
+	breakorders = bt;
 }
 
 void Cook::setBreakCount(int bt)

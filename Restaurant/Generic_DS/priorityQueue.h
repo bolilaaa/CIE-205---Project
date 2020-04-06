@@ -160,6 +160,10 @@ bool priorityQueue<T>::pop(T& frntEntry)
 	if (nodeToDeletePtr == backPtr)	 // Special case: one node in queue
 		backPtr = nullptr;
 
+	// Free memory reserved by the dequeued node
+	delete nodeToDeletePtr;
+
+
 	return true;
 
 }

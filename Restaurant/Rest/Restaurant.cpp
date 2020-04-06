@@ -159,18 +159,21 @@ void Restaurant::LoadAll(string filename) {
 		CK = new Cook(i + 1, TYPE_VIP);
 		CK->setSpeed(SV/2 + rand() % SV);
 		CK->setBreakTime(BV);
+		CK->setBreakOrders(BO);
 		avVIPCooks.push(CK);
 	}
 	for (int i = 0; i < numCVEG; i++) {
 		CK = new Cook(i + 1, TYPE_VGAN);
 		CK->setSpeed(SG / 2 + rand() % SG);
 		CK->setBreakTime(BG);
+		CK->setBreakOrders(BO);
 		avVEGCooks.push(CK);
 	}
 	for (int i = 0; i < numCNOR; i++) {
 		CK = new Cook(i + 1, TYPE_NRM);
 		CK->setSpeed(SN / 2 + rand() % SN);
 		CK->setBreakTime(BN);
+		CK->setBreakOrders(BO);
 		avNORCooks.push(CK);
 	}
 
@@ -239,7 +242,10 @@ void Restaurant::SIMULATE()
 
 	//Now let's start the simulation
 	int CurrentTimeStep = 1;
-	while(!EventsQueue.isEmpty()) 	//as long as events queue is not empty yet
+
+	bool Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
+
+	while(!Stop) 	//as long as events queue is not empty yet
 	{
 		//print current timestep
 		char timestep[10];
@@ -349,8 +355,8 @@ void Restaurant::SIMULATE()
 		}
 
 		// Each 5 seconds remove orders to done and cooks to available
-		if (CurrentTimeStep % 5 == 0) 
-		{
+		/*if (CurrentTimeStep % 5 == 0) 
+		{*/
 			// Normal
 			if (!navNORCooks.empty())
 			{
@@ -360,7 +366,7 @@ void Restaurant::SIMULATE()
 					navNORCooks.pop(pCook);
 					pCook->setdOrders(pCook->getdOrders() + 1);
 					// move cook
-					if (pCook->getdOrders() % 5) // to be modified to number of orders after which is break
+					if (pCook->getdOrders() % pCook->getBreakOrders() == 0) // to be modified to number of orders after which is break
 					{
 						pCook->setStatus(BRK);
 						pCook->setBreakCount(CurrentTimeStep);
@@ -400,12 +406,12 @@ void Restaurant::SIMULATE()
 			if (!navVEGCooks.empty())
 			{
 				navVEGCooks.peekFront(pCook);
-				if (CurrentTimeStep >= (pCook->getAOrder()->getArrivalTime() + pCook->getSpeed()))
+				if (CurrentTimeStep >= (pCook->getAOrder()->getFinishTime()))
 				{
 					navVEGCooks.pop(pCook);
 					pCook->setdOrders(pCook->getdOrders() + 1);
 					// move cook
-					if (pCook->getdOrders() % 5) // to be modified to number of orders after which is break
+					if (pCook->getdOrders() % pCook->getBreakOrders() == 0) // to be modified to number of orders after which is break
 					{
 						pCook->setStatus(BRK);
 						pCook->setBreakCount(CurrentTimeStep);
@@ -449,12 +455,12 @@ void Restaurant::SIMULATE()
 			if (!navVIPCooks.empty())
 			{
 				navVIPCooks.peekFront(pCook);
-				if (CurrentTimeStep >= (pCook->getAOrder()->getArrivalTime() + pCook->getSpeed()))
+				if (CurrentTimeStep >= (pCook->getAOrder()->getFinishTime()))
 				{
 					navVIPCooks.pop(pCook);
 					pCook->setdOrders(pCook->getdOrders() + 1);
 					// move cook
-					if (pCook->getdOrders() % 5) // to be modified to number of orders after which is break
+					if (pCook->getdOrders() % pCook->getBreakOrders() == 0) // to be modified to number of orders after which is break
 					{
 						pCook->setStatus(BRK);
 						pCook->setBreakCount(CurrentTimeStep);
@@ -489,7 +495,7 @@ void Restaurant::SIMULATE()
 					}
 				}
 			}
-		}
+		/*}*/
 
 		// getting back to work out of the break
 		// Normal
@@ -539,6 +545,8 @@ void Restaurant::SIMULATE()
 		Sleep(1000);
 		CurrentTimeStep++;	//advance timestep
 		pGUI->ResetDrawingList();
+
+		Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
 	}
 
 	pGUI->PrintMessage("generation done, click to END program");
