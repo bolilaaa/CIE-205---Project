@@ -1,4 +1,1 @@
-﻿  Restaurant.cpp
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(81,9): warning C4101: 'pOrd': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(178,32): warning C4101: 'dir': unreferenced local variable
-  Restaurant.vcxproj -> A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Debug\Restaurant.exe
+﻿  Restaurant.vcxproj -> A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Debug\Restaurant.exe

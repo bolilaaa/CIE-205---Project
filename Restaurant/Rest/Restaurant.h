@@ -7,6 +7,7 @@
 #include "..\Generic_DS\Queue.h"
 #include "..\Generic_DS\priorityQueue.h"
 #include "..\Events\Event.h"
+#include<iostream>
 #include<fstream>
 
 #include "Order.h"
@@ -25,7 +26,6 @@ class Restaurant
 public:
 	double crrtimestep = 0;
 //private:
-	ifstream file_load;
 	int AutoPromotion, AutoPromoted = 0, numCNOR = 0, numCVEG = 0, numCVIP = 0, numCCHN = 0, numCMEX = 0;
 	GUI *pGUI;
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
