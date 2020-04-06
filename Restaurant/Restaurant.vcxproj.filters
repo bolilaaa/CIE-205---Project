@@ -120,6 +120,12 @@
     <ClInclude Include="Generic_DS\CompareCPri.h">
       <Filter>Generic_DS</Filter>
     </ClInclude>
+    <ClInclude Include="Generic_DS\pqNode.h">
+      <Filter>Generic_DS</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic_DS\priorityQueue.h">
+      <Filter>Generic_DS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Demo_Main.cpp" />

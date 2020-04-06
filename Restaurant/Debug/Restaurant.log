@@ -1,17 +1,4 @@
-﻿  Demo_Main.cpp
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\queue(188,1): error C2338: container adaptors require consistent types
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(63): message : see reference to class template instantiation 'std::priority_queue<Order *,std::vector<Cook *,std::allocator<Cook *>>,CompareCPri>' being compiled
-  ArrivalEvent.cpp
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\queue(188,1): error C2338: container adaptors require consistent types
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(63): message : see reference to class template instantiation 'std::priority_queue<Order *,std::vector<Cook *,std::allocator<Cook *>>,CompareCPri>' being compiled
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(26,17): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(35,18): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(45,18): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(53,17): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-  GUI.cpp
-  Cook.cpp
-  Order.cpp
-  Restaurant.cpp
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\queue(188,1): error C2338: container adaptors require consistent types
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(63): message : see reference to class template instantiation 'std::priority_queue<Order *,std::vector<Cook *,std::allocator<Cook *>>,CompareCPri>' being compiled
-  Generating Code...
+﻿  Restaurant.cpp
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(81,9): warning C4101: 'pOrd': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(178,32): warning C4101: 'dir': unreferenced local variable
+  Restaurant.vcxproj -> A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Debug\Restaurant.exe

@@ -103,6 +103,8 @@
     <ClInclude Include="Generic_DS\CompareOSPri.h" />
     <ClInclude Include="Generic_DS\CompareOWPri.h" />
     <ClInclude Include="Generic_DS\Node.h" />
+    <ClInclude Include="Generic_DS\pqNode.h" />
+    <ClInclude Include="Generic_DS\priorityQueue.h" />
     <ClInclude Include="Generic_DS\Queue.h" />
     <ClInclude Include="GUI\GUI.h" />
     <ClInclude Include="Rest\Cook.h" />

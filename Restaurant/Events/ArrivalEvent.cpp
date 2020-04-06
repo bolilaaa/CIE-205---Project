@@ -1,6 +1,5 @@
 #include "ArrivalEvent.h"
 #include "..\Rest\Restaurant.h"
-#include "..\Rest\Restaurant.cpp"
 
 
 
