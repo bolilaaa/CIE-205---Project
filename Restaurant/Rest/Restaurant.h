@@ -11,13 +11,11 @@
 #include "Cook.h"
 
 #include <queue>
-#include "..\CompareOWPri.h"
+#include "..\Generic_DS\CompareOWPri.h"
+#include "..\Generic_DS\CompareOSPri.h"
 #include "..\Generic_DS\CompareCPri.h"
-#include "..\Rest\CompareBPri.h"
-#include "..\Rest\CompareOSPri.h"
-
-
-
+#include "..\Generic_DS\CompareBPri.h"
+using namespace std;
 
 // it is the maestro of the project
 class Restaurant  

@@ -56,19 +56,19 @@ void ArrivalEvent::Execute(Restaurant* pRest)
 		pRest->AddtowaitingVEGOrders(pOrd);
 	}
 }
-void ArrivalEvent::Promote(Restaurant* ptr)
-{
-	if (OrdType == TYPE_NRM) {
-		Order* pOrd = new Order(OrderID, OrdType);
-		ptr-> AddtowaitingVIPOrders(pOrd);
-	}
-}
-void ArrivalEvent::Cancel(Restaurant* ptr)
-{
-	if (OrdType == TYPE_NRM) {
-		Order* pOrd = new Order(OrderID, OrdType);
-		ptr->rmvsrvNOROrders(pOrd);
-	
-	}
-	
-}
+//void ArrivalEvent::Promote(Restaurant* ptr)
+//{
+//	if (OrdType == TYPE_NRM) {
+//		Order* pOrd = new Order(OrderID, OrdType);
+//		ptr-> AddtowaitingVIPOrders(pOrd);
+//	}
+//}
+//void ArrivalEvent::Cancel(Restaurant* ptr)
+//{
+//	if (OrdType == TYPE_NRM) {
+//		Order* pOrd = new Order(OrderID, OrdType);
+//		ptr->rmvsrvNOROrders(pOrd);
+//	
+//	}
+//	
+//}

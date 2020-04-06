@@ -1,5 +1,6 @@
 #pragma once
 #include "../Rest/Cook.h"
+using namespace std;
 
 class CompareBPri
 {

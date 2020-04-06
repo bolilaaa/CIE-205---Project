@@ -100,14 +100,6 @@ int Order::getArrivalTime() const
 }
 
 
-int Order::getSize() const
-{
-	return size;
-}
-
-
-
-
 Order::~Order()
 {
 }

@@ -108,14 +108,17 @@
     <ClInclude Include="Rest\Cook.h">
       <Filter>Restaurant</Filter>
     </ClInclude>
-    <ClInclude Include="CompareOPri.h">
-      <Filter>Restaurant</Filter>
+    <ClInclude Include="Generic_DS\CompareOSPri.h">
+      <Filter>Generic_DS</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic_DS\CompareOWPri.h">
+      <Filter>Generic_DS</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic_DS\CompareBPri.h">
+      <Filter>Generic_DS</Filter>
     </ClInclude>
     <ClInclude Include="Generic_DS\CompareCPri.h">
-      <Filter>Restaurant</Filter>
-    </ClInclude>
-    <ClInclude Include="Rest\CompareBPri.h">
-      <Filter>Restaurant</Filter>
+      <Filter>Generic_DS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
