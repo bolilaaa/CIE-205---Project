@@ -1,7 +1,7 @@
 #pragma once
 #include "..\Restaurant\Rest\Order.h"
 
-class CompareOPri
+class CompareOWPri
 {
 public:
 	bool operator()(Order*& O1, Order*& O2) // Returns true if t1 is earlier than t2

@@ -14,10 +14,7 @@ protected:
 	double totalMoney;	//Total order money
 	int ArrTime, ServTime, FinishTime, WaitTime = 0;	//arrival, service start, and finish times
 	double priority; // added // 
-	
-	//
-	// TODO: Add More Data Members As Needed
-	//
+	double size;
 
 public:
 	Order(int ID, ORD_TYPE r_Type);

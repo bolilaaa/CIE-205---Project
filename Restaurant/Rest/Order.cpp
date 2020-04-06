@@ -49,6 +49,11 @@ void Order::setFinTime(int time) {
 	FinishTime = time;
 }
 
+void Order::setSize(const int s)
+{
+	size = s;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // Getters //
 int Order::GetID()
@@ -81,6 +86,10 @@ int Order::getFinishTime() const {
 }
 int Order::getWaitTime() const {
 	return WaitTime;
+}
+double Order::getSize() const
+{
+	return size;
 }
 // int getArrivalTime() const;
 double Order::getMoney() const {
