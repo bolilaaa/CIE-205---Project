@@ -57,7 +57,7 @@ public:
 	bool push(const T& newEntry);
 	bool emplace(const T& newEntry); // to be manipulated
 	pqNode<T>* top();
-	bool pop(T& frntEntry);
+	bool pop(pqNode<T>* frntEntry);
 	bool peekFront(T& frntEntry)  const;
 	T* toArray(int& count);	//returns array of T (array if items)
 	~priorityQueue();
@@ -148,13 +148,13 @@ Output: True if the operation is successful; otherwise false.
 */
 
 template <typename T>
-bool priorityQueue<T>::pop(T& frntEntry)
+bool priorityQueue<T>::pop(pqNode<T>* frntEntry)
 {
 	if (empty())
 		return false;
 
 	pqNode<T>* nodeToDeletePtr = frontPtr;
-	frntEntry = frontPtr->getItem();
+	frntEntry = frontPtr;
 	frontPtr = frontPtr->getNext();
 	// Queue is not empty; remove front
 	if (nodeToDeletePtr == backPtr)	 // Special case: one node in queue

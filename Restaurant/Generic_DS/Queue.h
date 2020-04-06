@@ -56,6 +56,7 @@ public :
 	bool isEmpty() const ;
 	bool enqueue(const T& newEntry);
 	bool dequeue(T& frntEntry);  
+	bool pop(Node<T>* frntEntry);
 	bool peekFront(T& frntEntry)  const;
 	T* toArray(int& count);	//returns array of T (array if items)
 	~Queue();
@@ -139,6 +140,27 @@ bool Queue<T>:: dequeue(T& frntEntry)
 	if (nodeToDeletePtr == backPtr)	 // Special case: one node in queue
 		backPtr = nullptr ;	
 		
+	// Free memory reserved by the dequeued node
+	delete nodeToDeletePtr;
+
+
+	return true;
+
+}
+
+template <typename T>
+bool Queue<T>::pop(Node<T>* frntEntry)
+{
+	if (isEmpty())
+		return false;
+
+	Node<T>* nodeToDeletePtr = frontPtr;
+	frntEntry = frontPtr;
+	frontPtr = frontPtr->getNext();
+	// Queue is not empty; remove front
+	if (nodeToDeletePtr == backPtr)	 // Special case: one node in queue
+		backPtr = nullptr;
+
 	// Free memory reserved by the dequeued node
 	delete nodeToDeletePtr;
 
