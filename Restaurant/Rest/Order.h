@@ -46,7 +46,6 @@ public:
 	int getFinishTime() const;
 	int getWaitTime() const;
 	// int getArrivalTime() const;
-	double getSize() const; // mark // 
 	double getMoney() const; // price
 	double Getpriority() const;
 	int getSize() const;

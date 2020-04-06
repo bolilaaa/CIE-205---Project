@@ -40,7 +40,13 @@ enum PROG_MODE	//mode of the program interface
 	MODE_CNT	//number of possible modes
 };
 
-
+enum EVENT_TYPE	//types of orders
+{
+	NORMAL,	//normal order
+	CANCEL,		//frozen
+	PROMOTE,	//promote	
+	Event_CNT	 //No. of event types
+};
 #define MaxPossibleOrdCnt 999	//max possible order count (arbitrary value)
 #define MaxPossibleMcCnt  100	//max possible cook count (arbitrary value)
 
