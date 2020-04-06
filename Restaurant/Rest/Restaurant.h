@@ -11,9 +11,11 @@
 #include "Cook.h"
 
 #include <queue>
-#include "..\CompareOPri.h"
+#include "..\CompareOWPri.h"
 #include "..\Generic_DS\CompareCPri.h"
 #include "..\Rest\CompareBPri.h"
+#include "..\Rest\CompareOSPri.h"
+
 
 
 
@@ -36,14 +38,14 @@ public:
 	Queue<Order*> waitingVEGOrders;	// List of waiting vegan orders
 	Queue<Order*> waitingCHNOrders;	// List of waiting additional chinese
 	Queue<Order*> waitingMEXOrders;	// List of waiting additional mexican
-	priority_queue<Order*, vector<Order*>, CompareOPri> waitingVIPOrders;	// List of waiting VIP orders
+	priority_queue<Order*, vector<Order*>, CompareOWPri> waitingVIPOrders;	// List of waiting VIP orders
 
 	//// in service ////
-	Queue<Order*> srvNOROrders;	// List of in service normal orders
-	Queue<Order*> srvVEGOrders;	// List of in service vegan orders
-	Queue<Order*> srvCHNOrders;	// List of in service additional chinese orders
-	Queue<Order*> srvMEXOrders;	// List of in service additional mexican orders
-	Queue<Order*> srvVIPOrders;	// List of in service VIP orders
+	priority_queue<Order*, vector<Order*>, CompareOSPri> srvNOROrders;	// List of in service normal orders
+	priority_queue<Order*, vector<Order*>, CompareOSPri> srvVEGOrders;	// List of in service vegan orders
+	priority_queue<Order*, vector<Order*>, CompareOSPri> srvCHNOrders;	// List of in service additional chinese orders
+	priority_queue<Order*, vector<Order*>, CompareOSPri> srvMEXOrders;	// List of in service additional mexican orders
+	priority_queue<Order*, vector<Order*>, CompareOSPri> srvVIPOrders;	// List of in service VIP orders
 
 	//// done ////
 	Queue<Order*> doneOrders;	// List of DONE orders
@@ -115,11 +117,11 @@ public:
 	void rmvwaitingVIPOrders(Order* ptr);
 
 
-	void rmvsrvNOROrders(Order* ptr);
-	void rmvsrvVEGOrders(Order* ptr);
-	void rmvsrvCHNOrders(Order* ptr);
-	void rmvsrvMEXOrders(Order* ptr);
-	void rmvsrvVIPOrders(Order* ptr);
+	void rmvsrvNOROrders();
+	void rmvsrvVEGOrders();
+	void rmvsrvCHNOrders();
+	void rmvsrvMEXOrders();
+	void rmvsrvVIPOrders();
 
 
 	void rmvdoneOrders(Order* ptr);

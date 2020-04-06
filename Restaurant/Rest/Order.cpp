@@ -17,12 +17,15 @@ Order::Order(int id, ORD_TYPE r_Type, double pir) {
 
 
 /////////////////////////////////////////////////////////////////////////////
-//Setters // 
+//Setters //
 void Order::setStatus(ORD_STATUS s)
 {
 	status = s;
 }
-
+void Order::SetDistance(int d)
+{
+	Distance = d > 0 ? d : 0;
+}
 
 void Order::Setpriority(double r) {
 	priority = r;
@@ -46,6 +49,11 @@ void Order::setFinTime(int time) {
 	FinishTime = time;
 }
 
+void Order::setSize(const int s)
+{
+	size = s;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // Getters //
 int Order::GetID()
@@ -57,8 +65,6 @@ ORD_TYPE Order::GetType() const
 {
 	return type;
 }
-
-
 
 ORD_STATUS Order::getStatus() const
 {
@@ -74,6 +80,10 @@ int Order::getFinishTime() const {
 }
 int Order::getWaitTime() const {
 	return WaitTime;
+}
+int Order::getSize() const
+{
+	return size;
 }
 // int getArrivalTime() const;
 double Order::getMoney() const {

@@ -12,19 +12,15 @@ protected:
 	ORD_STATUS status;	//waiting, in-service, done
 	double totalMoney;	//Total order money
 	int ArrTime, ServTime, FinishTime, WaitTime = 0;	//arrival, service start, and finish times
-	double priority; // added // 
+	double priority; // added //
 	int size;
-	
-	//
-	// TODO: Add More Data Members As Needed
-	//
 
 public:
 	Order(int ID, ORD_TYPE r_Type);
 	Order(int ID, ORD_TYPE r_Type, double pir); //constructor for VIP orders
 	virtual ~Order();
 
-	//Setters // 
+	//Setters //
 	void setStatus(ORD_STATUS s);
 
 	void Setpriority(double r);
@@ -45,10 +41,9 @@ public:
 	int getServTime() const;
 	int getFinishTime() const;
 	int getWaitTime() const;
-	// int getArrivalTime() const;
+	int getSize() const; // mark //
 	double getMoney() const; // price
 	double Getpriority() const;
-	int getSize() const;
 	void increamentWaitTime();
 };
 
