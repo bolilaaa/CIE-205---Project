@@ -77,7 +77,7 @@ int Order::getFinishTime() const {
 int Order::getWaitTime() const {
 	return WaitTime;
 }
-double Order::getSize() const
+int Order::getSize() const
 {
 	return size;
 }

@@ -41,11 +41,9 @@ public:
 	int getServTime() const;
 	int getFinishTime() const;
 	int getWaitTime() const;
-	// int getArrivalTime() const;
-	double getSize() const; // mark // 
+	int getSize() const; // mark // 
 	double getMoney() const; // price
 	double Getpriority() const;
-	int getSize() const;
 	void increamentWaitTime();
 };
 
