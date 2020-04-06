@@ -22,10 +22,6 @@ void Order::setStatus(ORD_STATUS s)
 {
 	status = s;
 }
-void Order::SetDistance(int d)
-{
-	Distance = d > 0 ? d : 0;
-}
 
 void Order::Setpriority(double r) {
 	priority = r;
