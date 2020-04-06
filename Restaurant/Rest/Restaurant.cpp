@@ -549,122 +549,122 @@ void Restaurant::SIMULATE()
 
 //////////////////////////////////  List handling functions   /////////////////////////////
 /////// waiting ///////
-void Restaurant::AddtowaitingNOROrders(Order* ptr)
+void Restaurant::AddtowaitingNOROrders(Order*& ptr)
 {
 	waitingNOROrders.enqueue(ptr);
 }
 
-void Restaurant::AddtowaitingVEGOrders(Order* ptr)
+void Restaurant::AddtowaitingVEGOrders(Order*& ptr)
 {
 	waitingVEGOrders.enqueue(ptr);
 }
 
-void Restaurant::AddtowaitingCHNOrders(Order* ptr)
+void Restaurant::AddtowaitingCHNOrders(Order*& ptr)
 {
 	waitingCHNOrders.enqueue(ptr);
 }
 
-void Restaurant::AddtowaitingMEXOrders(Order* ptr)
+void Restaurant::AddtowaitingMEXOrders(Order*& ptr)
 {
 	waitingMEXOrders.enqueue(ptr);
 }
 
-void Restaurant::AddtowaitingVIPOrders(Order* ptr)
+void Restaurant::AddtowaitingVIPOrders(Order*& ptr)
 {
 	waitingVIPOrders.push(ptr);
 }
 
 
 /////// in service ///////
-void Restaurant::AddtosrvNOROrders(Order* ptr)
+void Restaurant::AddtosrvNOROrders(Order*& ptr)
 {
 	srvNOROrders.push(ptr);
 }
 
-void Restaurant::AddtosrvVEGOrders(Order* ptr)
+void Restaurant::AddtosrvVEGOrders(Order*& ptr)
 {
 	srvVEGOrders.push(ptr);
 }
 
-void Restaurant::AddtosrvCHNOrders(Order* ptr)
+void Restaurant::AddtosrvCHNOrders(Order*& ptr)
 {
 	srvCHNOrders.push(ptr);
 
 }
 
-void Restaurant::AddtosrvMEXOrders(Order* ptr)
+void Restaurant::AddtosrvMEXOrders(Order*& ptr)
 {
 	srvMEXOrders.push(ptr);
 }
 
-void Restaurant::AddtosrvVIPOrders(Order* ptr)
+void Restaurant::AddtosrvVIPOrders(Order*& ptr)
 {
 	srvVIPOrders.push(ptr);
 }
 
 /////// add DONE ///////
-void Restaurant::AddtodoneOrders(Order* ptr)
+void Restaurant::AddtodoneOrders(Order*& ptr)
 {
 	doneOrders.enqueue(ptr);
 }
 
 
 /////// remove waiting ///////
-void Restaurant::rmvwaitingNOROrders(Order* ptr)
+void Restaurant::rmvwaitingNOROrders(Order*& ptr)
 {
 	waitingNOROrders.dequeue(ptr);
 }
 
-void Restaurant::rmvwaitingVEGOrders(Order* ptr)
+void Restaurant::rmvwaitingVEGOrders(Order*& ptr)
 {
 	waitingVEGOrders.dequeue(ptr);
 }
 
-void Restaurant::rmvwaitingCHNOrders(Order* ptr)
+void Restaurant::rmvwaitingCHNOrders(Order*& ptr)
 {
 	waitingCHNOrders.dequeue(ptr);
 }
 
-void Restaurant::rmvwaitingMEXOrders(Order* ptr)
+void Restaurant::rmvwaitingMEXOrders(Order*& ptr)
 {
 	waitingMEXOrders.dequeue(ptr);
 }
 
-void Restaurant::rmvwaitingVIPOrders(Order* ptr)
+void Restaurant::rmvwaitingVIPOrders(Order*& ptr)
 {
 	waitingVIPOrders.pop(ptr);
 }
 
 
 /////// remove service ///////***
-void Restaurant::rmvsrvNOROrders(Order* ptr)
+void Restaurant::rmvsrvNOROrders(Order*& ptr)
 {
 	srvNOROrders.pop(ptr);
 }
 
-void Restaurant::rmvsrvVEGOrders(Order* ptr)
+void Restaurant::rmvsrvVEGOrders(Order*& ptr)
 {
 	srvVEGOrders.pop(ptr);
 }
 
-void Restaurant::rmvsrvCHNOrders(Order* ptr)
+void Restaurant::rmvsrvCHNOrders(Order*& ptr)
 {
 	srvCHNOrders.pop(ptr);
 }
 
-void Restaurant::rmvsrvMEXOrders(Order* ptr)
+void Restaurant::rmvsrvMEXOrders(Order*& ptr)
 {
 	srvMEXOrders.pop(ptr);
 }
 
-void Restaurant::rmvsrvVIPOrders(Order* ptr)
+void Restaurant::rmvsrvVIPOrders(Order*& ptr)
 {
 	srvVIPOrders.pop(ptr);
 }
 
 
 /////// remove DONE ///////
-void Restaurant::rmvdoneOrders(Order* ptr)
+void Restaurant::rmvdoneOrders(Order* &ptr)
 {
 	doneOrders.dequeue(ptr);
 }
