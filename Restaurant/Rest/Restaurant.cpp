@@ -149,16 +149,10 @@ void Restaurant::FillDrawingList()
 }
 
 void Restaurant::LoadAll(string filename) {
-	ifstream file_load;
 	int Num_of_events; //variable to read the number of events from the file
 	int BO, BN, BG, BV,BC, BM, SN, SG, SV,SC,SM; //variables to read cooks speed ranges and break times
 	file_load.open(filename.c_str()); //opening the file
-	if (!file_load.is_open())
-	{
-		// not found
-		return;
-	}
-	file_load >> numCNOR >> numCVEG >> numCVIP >> numCCHN >> numCMEX>> SN >> SG >> SV >>SC>>SM>> BO >> BN >> BG >> BV >>BC>>BM>> AutoPromotion;
+	file_load >> numCNOR >> numCVEG >> numCVIP >> SN >> SG >> SV >> BO >> BN >> BG >> BV >> AutoPromotion;
 	//Intializing Cooks lists (cooks will be pushed directly but orders will use functions)
 	Cook* CK;
 	for (int i = 0; i < numCVIP; i++) {

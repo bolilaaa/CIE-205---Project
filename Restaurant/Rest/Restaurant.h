@@ -24,6 +24,7 @@ using namespace std;
 class Restaurant  
 {	
 public:
+	ifstream file_load;
 	double crrtimestep = 0;
 //private:
 	int AutoPromotion, AutoPromoted = 0, numCNOR = 0, numCVEG = 0, numCVIP = 0, numCCHN = 0, numCMEX = 0;
