@@ -308,7 +308,7 @@ void Restaurant::SIMULATE()
 			if (!navNORCooks.empty())
 			{
 				pCook = navNORCooks.top();
-				if (CurrentTimeStep % pCook->getSpeed() == 0)
+				if (CurrentTimeStep >= (pCook->getAOrder()->getArrivalTime() + pCook->getSpeed()))
 				{
 					navNORCooks.pop();
 					pCook->setdOrders(pCook->getdOrders() + 1);
@@ -316,6 +316,7 @@ void Restaurant::SIMULATE()
 					if (pCook->getdOrders() % 5) // to be modified to number of orders after which is break
 					{
 						pCook->setStatus(BRK);
+						pCook->setBreakCount(CurrentTimeStep);
 						brkNORCooks.push(pCook);
 					}
 					else
@@ -344,14 +345,9 @@ void Restaurant::SIMULATE()
 		// getting back to work out of the break
 		// Normal
 		if (!brkNORCooks.empty())
-		{
-			for (int i = 0; i < brkNORCooks.size(); i++)
-			{
-				brkNORCooks[i]->setBreakCount(getBreakCount() + 1);
-			}	
-			
+		{			
 			pCook = navNORCooks.top();
-			if (pCook->getBreakTime() == pCook->getBreakCount())
+			if (CurrentTimeStep == (pCook->getBreakTime() + pCook->getBreakCount()))
 			{
 				// move cook
 				navNORCooks.pop();

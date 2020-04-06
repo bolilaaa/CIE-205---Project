@@ -1,8 +1,19 @@
 ﻿  Demo_Main.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\queue(188,1): error C2338: container adaptors require consistent types
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(63): message : see reference to class template instantiation 'std::priority_queue<Order *,std::vector<Cook *,std::allocator<Cook *>>,CompareCPri>' being compiled
   ArrivalEvent.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\queue(188,1): error C2338: container adaptors require consistent types
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(63): message : see reference to class template instantiation 'std::priority_queue<Order *,std::vector<Cook *,std::allocator<Cook *>>,CompareCPri>' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(180,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1323): message : see declaration of 'itoa'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(26,17): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(35,18): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(45,18): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(53,17): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+  GUI.cpp
   Restaurant.cpp
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(89,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(109,9): warning C4101: 'CurEvent': unreferenced local variable
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\queue(188,1): error C2338: container adaptors require consistent types
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(63): message : see reference to class template instantiation 'std::priority_queue<Order *,std::vector<Cook *,std::allocator<Cook *>>,CompareCPri>' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(180,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1323): message : see declaration of 'itoa'
   Generating Code...
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(120): warning C4700: uninitialized local variable 'CurOrderType' used
-  Restaurant.vcxproj -> A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Debug\Restaurant.exe

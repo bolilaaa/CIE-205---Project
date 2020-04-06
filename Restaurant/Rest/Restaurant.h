@@ -13,6 +13,8 @@
 #include <queue>
 #include "..\CompareOPri.h"
 #include "..\Generic_DS\CompareCPri.h"
+#include "..\Rest\CompareBPri.h"
+
 
 
 // it is the maestro of the project
@@ -65,11 +67,11 @@ public:
 	priority_queue<Order*, vector<Cook*>, CompareCPri> navVIPCooks;	// List of in-available VIP cooks
 
 	//// break ////
-	priority_queue<Order*, vector<Cook*>, CompareCPri> brkNORCooks;	// List of in-available normal cooks
-	priority_queue<Order*, vector<Cook*>, CompareCPri> brkVEGCooks;	// List of in-available vegan cooks
-	priority_queue<Order*, vector<Cook*>, CompareCPri> brkCHNCooks;	// List of in-available additional chinese cooks
-	priority_queue<Order*, vector<Cook*>, CompareCPri> brkMEXCooks;	// List of in-available additional mexican cooks
-	priority_queue<Order*, vector<Cook*>, CompareCPri> brkVIPCooks;	// List of in-available VIP cooks
+	priority_queue<Order*, vector<Cook*>, CompareBPri> brkNORCooks;	// List of in-available normal cooks
+	priority_queue<Order*, vector<Cook*>, CompareBPri> brkVEGCooks;	// List of in-available vegan cooks
+	priority_queue<Order*, vector<Cook*>, CompareBPri> brkCHNCooks;	// List of in-available additional chinese cooks
+	priority_queue<Order*, vector<Cook*>, CompareBPri> brkMEXCooks;	// List of in-available additional mexican cooks
+	priority_queue<Order*, vector<Cook*>, CompareBPri> brkVIPCooks;	// List of in-available VIP cooks
 
 	///////////////////////////////////////////////////////////////////////////
 
