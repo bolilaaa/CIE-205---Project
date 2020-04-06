@@ -157,19 +157,19 @@ void Restaurant::LoadAll(string filename) {
 	Cook* CK;
 	for (int i = 0; i < numCVIP; i++) {
 		CK = new Cook(i + 1, TYPE_VIP);
-		CK->setSpeed(SV);
+		CK->setSpeed(rand() % ((SV+10)-SV)+SV);
 		CK->setBreakTime(BV);
 		avVIPCooks.push(CK);
 	}
 	for (int i = 0; i < numCVEG; i++) {
 		CK = new Cook(i + 1, TYPE_VGAN);
-		CK->setSpeed(SG);
+		CK->setSpeed(rand() % ((SG + 10) - SG) + SG);
 		CK->setBreakTime(BG);
 		avVEGCooks.push(CK);
 	}
 	for (int i = 0; i < numCNOR; i++) {
 		CK = new Cook(i + 1, TYPE_NRM);
-		CK->setSpeed(SN);
+		CK->setSpeed(rand() % ((SN + 10) - SN) + SN);
 		CK->setBreakTime(BN);
 		avNORCooks.push(CK);
 	}
