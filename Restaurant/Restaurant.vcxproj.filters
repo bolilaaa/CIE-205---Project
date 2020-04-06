@@ -114,6 +114,9 @@
     <ClInclude Include="Generic_DS\CompareCPri.h">
       <Filter>Restaurant</Filter>
     </ClInclude>
+    <ClInclude Include="Rest\CompareBPri.h">
+      <Filter>Restaurant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Demo_Main.cpp" />
