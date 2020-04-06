@@ -56,7 +56,7 @@ public :
 	bool isEmpty() const ;
 	bool enqueue(const T& newEntry);
 	bool dequeue(T& frntEntry);  
-	bool pop(Node<T>* frntEntry);
+	bool pop(T& frntEntry);
 	bool peekFront(T& frntEntry)  const;
 	T* toArray(int& count);	//returns array of T (array if items)
 	~Queue();
@@ -149,13 +149,13 @@ bool Queue<T>:: dequeue(T& frntEntry)
 }
 
 template <typename T>
-bool Queue<T>::pop(Node<T>* frntEntry)
+bool Queue<T>::pop(T& frntEntry)
 {
 	if (isEmpty())
 		return false;
 
 	Node<T>* nodeToDeletePtr = frontPtr;
-	frntEntry = frontPtr;
+	frntEntry = frontPtr->getItem();
 	frontPtr = frontPtr->getNext();
 	// Queue is not empty; remove front
 	if (nodeToDeletePtr == backPtr)	 // Special case: one node in queue
