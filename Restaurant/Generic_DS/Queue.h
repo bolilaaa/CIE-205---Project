@@ -59,6 +59,7 @@ public :
 	bool pop(T& frntEntry);
 	bool peekFront(T& frntEntry)  const;
 	T* toArray(int& count);	//returns array of T (array if items)
+	int CountNodes();
 	~Queue();
 };
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -227,4 +228,12 @@ T* Queue<T>::toArray(int& count)
 	return Arr;
 }
 
+
+template <typename T>
+int Queue<T>::CountNodes()
+{
+	int size = 0;
+	toArray(size);
+	return size;
+}
 #endif

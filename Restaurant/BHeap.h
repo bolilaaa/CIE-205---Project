@@ -9,7 +9,7 @@ private:
 	static HNode<T>* rec_deepestHNode(HNode<T>*& subRoot);
 	static void rec_findLastHNode(HNode<T>*& subRoot, int level, int& maxLevel, HNode<T>*& res);
 	static void rec_nullParent(HNode<T>*& subRoot, HNode<T>* child);
-	static void rec_deleteMax(HNode<T>*& subRoot, HNode<T>*& maxEntry);
+	static void rec_deleteMax(HNode<T>*& subRoot, T& maxEntry);
 	static int rec_CountHNodes(HNode<T>*& subRoot);
 	static int rec_height(HNode<T>*& subRoot);
 	static void rec_toArray(HNode<T>*& subRoot, int level, T*& arr, int& i);
@@ -25,9 +25,9 @@ public:
 	bool empty() const;
 	void insert(double key, T data); // not const
 	bool peekFront(T& frntEntry)  const;
-	void deleteMax(HNode<T>*& maxEntry); // not const
+	void deleteMax(T& maxEntry); // not const
 	int CountHNodes();
-	T* toArray();
+	T* toArray(int& count);
 
 	void destroy_tree(); // not const
 
@@ -83,7 +83,7 @@ void BHeap<T>::rec_heapify(HNode<T>*& subRoot)
 	left = (subRoot->getleft() != nullptr) ? subRoot->getleft()->getpriority() : 0;
 	right = (subRoot->getright() != nullptr) ? subRoot->getright()->getpriority() : 0;
 
-	if (left > subRoot->getpriority())
+	if (left > subRoot->getpriority() && subRoot->getleft() != nullptr)
 	{
 		larg = subRoot->getleft();
 		temp = subRoot->getright();
@@ -95,7 +95,7 @@ void BHeap<T>::rec_heapify(HNode<T>*& subRoot)
 
 		subRoot = larg;
 	}
-	if (right > subRoot->getpriority())
+	if (right > subRoot->getpriority() && subRoot->getright() != nullptr)
 	{
 		larg = subRoot->getright();
 		temp = subRoot->getleft();
@@ -146,13 +146,13 @@ void BHeap<T>::rec_insert(HNode<T>*& subRoot, double key, T data)
 }
 
 template < typename T>
-void BHeap<T>::rec_deleteMax(HNode<T>*& subRoot, HNode<T>*& maxEntry)
+void BHeap<T>::rec_deleteMax(HNode<T>*& subRoot, T& maxEntry)
 {
 	HNode<T>* lastHNode = rec_deepestHNode(subRoot);
 	rec_nullParent(subRoot, lastHNode);
 	lastHNode->setleft(subRoot->getleft());
 	lastHNode->setright(subRoot->getright());
-	maxEntry = subRoot;
+	maxEntry = subRoot->getdata();
 	//delete subRoot;
 	subRoot = lastHNode;
 
@@ -256,7 +256,7 @@ bool BHeap<T>::peekFront(T& maxEntry) const
 }
 
 template < typename T>
-void BHeap<T>::deleteMax(HNode<T>*& maxEntry)
+void BHeap<T>::deleteMax(T& maxEntry)
 {
 	rec_deleteMax(root, maxEntry);
 }
@@ -268,9 +268,10 @@ int BHeap<T>::CountHNodes()
 }
 
 template<typename T>
-T* BHeap<T>::toArray()
+T* BHeap<T>::toArray(int& count)
 {
 	int size = rec_CountHNodes(root);
+	count = size;
 	int h = rec_height(root);
 	T* arr = new T[size];
 	int i = 0;

@@ -89,30 +89,22 @@ public:
 	/// add to the lists ///
 	void AddtowaitingNOROrders(Order*& ptr);
 	void AddtowaitingVEGOrders(Order*& ptr);
-	void AddtowaitingCHNOrders(Order*& ptr);
-	void AddtowaitingMEXOrders(Order*& ptr);
 	void AddtowaitingVIPOrders(Order*& ptr);
 
-	void AddtosrvNOROrders(Order*& ptr);
-	void AddtosrvVEGOrders(Order*& ptr);
-	void AddtosrvCHNOrders(Order*& ptr);
-	void AddtosrvMEXOrders(Order*& ptr);
-	void AddtosrvVIPOrders(Order*& ptr);
+	void AddtosrvNOROrders(int pri, Order*& ptr);
+	void AddtosrvVEGOrders(int pri, Order*& ptr);
+	void AddtosrvVIPOrders(int pri, Order*& ptr);
 
 	void AddtodoneOrders(Order*& ptr);
 
 	/// remove from the lists ///
 	void rmvwaitingNOROrders(Order*& ptr);
 	void rmvwaitingVEGOrders(Order*& ptr);
-	void rmvwaitingCHNOrders(Order*& ptr);
-	void rmvwaitingMEXOrders(Order*& ptr);
 	void rmvwaitingVIPOrders(Order*& ptr);
 
 
 	void rmvsrvNOROrders(Order*& ptr);
 	void rmvsrvVEGOrders(Order*& ptr);
-	void rmvsrvCHNOrders(Order*& ptr);
-	void rmvsrvMEXOrders(Order*& ptr);
 	void rmvsrvVIPOrders(Order*& ptr);
 
 
