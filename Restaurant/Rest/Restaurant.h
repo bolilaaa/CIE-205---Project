@@ -6,6 +6,7 @@
 #include "..\GUI\GUI.h"
 #include "..\Generic_DS\Queue.h"
 #include "..\Generic_DS\priorityQueue.h"
+#include "..\BHeap.h"
 #include "..\Events\Event.h"
 #include<iostream>
 #include<fstream>
@@ -38,16 +39,12 @@ public:
 	//// waiting ////
 	Queue<Order*> waitingNOROrders;	// List of waiting normal orders
 	Queue<Order*> waitingVEGOrders;	// List of waiting vegan orders
-	Queue<Order*> waitingCHNOrders;	// List of waiting additional chinese
-	Queue<Order*> waitingMEXOrders;	// List of waiting additional mexican
-	priorityQueue<Order*> waitingVIPOrders;	// List of waiting VIP orders
+	BHeap<Order*> waitingVIPOrders;	// List of waiting VIP orders
 
 	//// in service ////
-	priorityQueue<Order*> srvNOROrders;	// List of in service normal orders
-	priorityQueue<Order*> srvVEGOrders;	// List of in service vegan orders
-	priorityQueue<Order*> srvCHNOrders;	// List of in service additional chinese orders
-	priorityQueue<Order*> srvMEXOrders;	// List of in service additional mexican orders
-	priorityQueue<Order*> srvVIPOrders;	// List of in service VIP orders
+	BHeap<Order*> srvNOROrders;	// List of in service normal orders
+	BHeap<Order*> srvVEGOrders;	// List of in service vegan orders
+	BHeap<Order*> srvVIPOrders;	// List of in service VIP orders
 
 	//// done ////
 	Queue<Order*> doneOrders;	// List of DONE orders
@@ -57,25 +54,19 @@ public:
 	////////////////////////////////// Cooks //////////////////////////////////
 
 	//// available ////
-	priorityQueue<Cook*> avNORCooks;	// List of available normal cooks
-	priorityQueue<Cook*> avVEGCooks;	// List of available vegan cooks
-	priorityQueue<Cook*> avCHNCooks;	// List of available additional type 1 cooks
-	priorityQueue<Cook*> avMEXCooks;	// List of available additional type 2 cooks
-	priorityQueue<Cook*> avVIPCooks;	// List of available VIP cooks
+	BHeap<Cook*> avNORCooks;	// List of available normal cooks
+	BHeap<Cook*> avVEGCooks;	// List of available vegan cooks
+	BHeap<Cook*> avVIPCooks;	// List of available VIP cooks
 
 	//// in-available ////
-	priorityQueue<Cook*> navNORCooks;	// List of in-available normal cooks
-	priorityQueue<Cook*> navVEGCooks;	// List of in-available vegan cooks
-	priorityQueue<Cook*> navCHNCooks;	// List of in-available additional chinese cooks
-	priorityQueue<Cook*> navMEXCooks;	// List of in-available additional mexican cooks
-	priorityQueue<Cook*> navVIPCooks;	// List of in-available VIP cooks
+	BHeap<Cook*> navNORCooks;	// List of in-available normal cooks
+	BHeap<Cook*> navVEGCooks;	// List of in-available vegan cooks
+	BHeap<Cook*> navVIPCooks;	// List of in-available VIP cooks
 
 	//// break ////
-	priorityQueue<Cook*> brkNORCooks;	// List of in-available normal cooks
-	priorityQueue<Cook*> brkVEGCooks;	// List of in-available vegan cooks
-	priorityQueue<Cook*> brkCHNCooks;	// List of in-available additional chinese cooks
-	priorityQueue<Cook*> brkMEXCooks;	// List of in-available additional mexican cooks
-	priorityQueue<Cook*> brkVIPCooks;	// List of in-available VIP cooks
+	BHeap<Cook*> brkNORCooks;	// List of in-available normal cooks
+	BHeap<Cook*> brkVEGCooks;	// List of in-available vegan cooks
+	BHeap<Cook*> brkVIPCooks;	// List of in-available VIP cooks
 
 	///////////////////////////////////////////////////////////////////////////
 
