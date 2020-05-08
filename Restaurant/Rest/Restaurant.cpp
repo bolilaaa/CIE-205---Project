@@ -562,7 +562,7 @@ void Restaurant::INTERACT()
 		{
 			msg4 += Garr[0] + "(" + Garr[1] + ") ";
 		}
-		string msg5 = +" | Total done VIP Orders: " + to_string(dVIP) + " | Total done N Orders: " + to_string(dN) + "| Total done G Orders: " + to_string(dG);
+		string msg5 = +"Total done VIP Orders: " + to_string(dVIP) + " | Total done N Orders: " + to_string(dN) + "| Total done G Orders: " + to_string(dG);
 				+ "CLICK to continue";
 		pGUI->PrintMessage(msg1);
 		pGUI->PrintMessage2(msg2);
@@ -610,23 +610,29 @@ void Restaurant::STEPBYSTEP()
 
 		FillDrawingList();
 		pGUI->UpdateInterface();
-		string msg = "[TS: " + to_string(CurrentTimeStep) + "]"
-			+ " | waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes()) + " | waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "| waiting G Orders: " + to_string(waitingVEGOrders.CountNodes()) + '\n'
-			+ " | Av. VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + " | Av. N cooks: " + to_string(avNORCooks.CountHNodes()) + " | Av. G cooks: " + to_string(avVEGCooks.CountHNodes()) + '\n';
+		string msg1 = "[TS: " + to_string(CurrentTimeStep) + "]";
+		string msg2 = "waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes()) + " | waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "| waiting G Orders: " + to_string(waitingVEGOrders.CountNodes());
+		string msg3 = "Av. VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + " | Av. N cooks: " + to_string(avNORCooks.CountHNodes()) + " | Av. G cooks: " + to_string(avVEGCooks.CountHNodes());
+		string msg4;
 		if (VIParr[0] != "0")
 		{
-			msg += VIParr[0] + "(" + VIParr[1] + ") ";
+			msg4 += VIParr[0] + "(" + VIParr[1] + ") ";
 		}
 		if (Narr[0] != "0")
 		{
-			msg += Narr[0] + "(" + Narr[1] + ") ";
+			msg4 += Narr[0] + "(" + Narr[1] + ") ";
 		}
 		if (Garr[0] != "0")
 		{
-			msg += Garr[0] + "(" + Garr[1] + ") ";
+			msg4 += Garr[0] + "(" + Garr[1] + ") ";
 		}
-		msg += +" | Total done VIP Orders: " + to_string(dVIP) + " | Total done N Orders: " + to_string(dN) + "| Total done G Orders: " + to_string(dG) + '\n';
-		pGUI->PrintMessage(msg);
+		string msg5 = +"Total done VIP Orders: " + to_string(dVIP) + " | Total done N Orders: " + to_string(dN) + "| Total done G Orders: " + to_string(dG);
+		+"CLICK to continue";
+		pGUI->PrintMessage(msg1);
+		pGUI->PrintMessage2(msg2);
+		pGUI->PrintMessage3(msg3);
+		pGUI->PrintMessage4(msg4);
+		pGUI->PrintMessage5(msg5);
 		Sleep(1000);
 		CurrentTimeStep++;	//advance timestep
 		pGUI->ResetDrawingList();
