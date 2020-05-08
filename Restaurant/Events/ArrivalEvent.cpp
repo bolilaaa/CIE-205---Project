@@ -65,12 +65,3 @@ void ArrivalEvent::Execute(Restaurant* pRest)
 //		ptr-> AddtowaitingVIPOrders(pOrd);
 //	}
 //}
-//void ArrivalEvent::Cancel(Restaurant* ptr)
-//{
-//	if (OrdType == TYPE_NRM) {
-//		Order* pOrd = new Order(OrderID, OrdType);
-//		ptr->rmvsrvNOROrders(pOrd);
-//	
-//	}
-//	
-//}

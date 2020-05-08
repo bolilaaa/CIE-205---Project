@@ -26,10 +26,13 @@ void Restaurant::RunSimulation()
 	switch (mode)	//Add a function for each mode in next phases
 	{
 	case MODE_INTR:
+		INTERACT();
 		break;
 	case MODE_STEP:
+		STEPBYSTEP();
 		break;
 	case MODE_SLNT:
+		SILENT();
 		break;
 	case MODE_SIMU:
 		SIMULATE();
@@ -507,6 +510,167 @@ void Restaurant::LoadAll(string filename) {
 
 //////////////////////////////////  Operation Modes   /////////////////////////////
 
+void Restaurant::INTERACT()
+{
+	// Taking the input and initializing the cooks and fill the EventsQueue
+	string filename;
+	pGUI->PrintMessage("Simulation Mode. Enter INPUT file name:");
+	filename = pGUI->GetString();	//get user input as a string
+	LoadAll(filename);
+	pGUI->PrintMessage("CLICK to start");
+	pGUI->waitForClick();
+
+	//Now let's start the simulation
+	int CurrentTimeStep = 1;
+
+	string VIParr[2] = { "0","0" }, Narr[2]= { "0","0" }, Garr[2]= { "0","0" };
+	int dVIP = 0, dN = 0, dG = 0;
+
+	bool Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
+
+	while (!Stop) 	//as long as events queue is not empty yet
+	{
+		//print current timestep
+		char timestep[10];
+		itoa(CurrentTimeStep, timestep, 10);
+		pGUI->PrintMessage(timestep);
+		ExecuteEvents(CurrentTimeStep);	//execute all events at current time step		
+
+		Work(CurrentTimeStep, VIParr, Narr, Garr, dVIP, dN, dG);
+
+		FillDrawingList();
+		pGUI->UpdateInterface();
+		string msg1 = "[TS: " + to_string(CurrentTimeStep) + "]";
+		string msg2 = "waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes()) + " | waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "| waiting G Orders: " + to_string(waitingVEGOrders.CountNodes());
+		string msg3 = "Av. VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + " | Av. N cooks: " + to_string(avNORCooks.CountHNodes()) + " | Av. G cooks: " + to_string(avVEGCooks.CountHNodes());
+		string msg4;
+		if (VIParr[0] != "0")
+		{
+			msg4 += VIParr[0] + "(" + VIParr[1] + ") ";
+		}
+		if (Narr[0] != "0")
+		{
+			msg4 += Narr[0] + "(" + Narr[1] + ") ";
+		}
+		if (Garr[0] != "0")
+		{
+			msg4 += Garr[0] + "(" + Garr[1] + ") ";
+		}
+		string msg5 = +" | Total done VIP Orders: " + to_string(dVIP) + " | Total done N Orders: " + to_string(dN) + "| Total done G Orders: " + to_string(dG);
+				+ "CLICK to continue";
+		pGUI->PrintMessage(msg1);
+		pGUI->PrintMessage2(msg2);
+		pGUI->PrintMessage3(msg3);
+		pGUI->PrintMessage4(msg4);
+		pGUI->PrintMessage5(msg5);
+		pGUI->waitForClick();
+		CurrentTimeStep++;	//advance timestep
+		pGUI->ResetDrawingList();
+		VIParr[0] = "0"; VIParr[1] = "0"; Narr[0] = "0"; Narr[1] = "0"; Garr[0] = "0"; Garr[1] = "0";
+		Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
+	}
+
+	pGUI->PrintMessage("generation done, click to END program");
+	pGUI->waitForClick();
+}
+
+void Restaurant::STEPBYSTEP()
+{
+	// Taking the input and initializing the cooks and fill the EventsQueue
+	string filename;
+	pGUI->PrintMessage("Simulation Mode. Enter INPUT file name:");
+	filename = pGUI->GetString();	//get user input as a string
+	LoadAll(filename);
+	pGUI->PrintMessage("CLICK to start");
+	pGUI->waitForClick();
+
+	//Now let's start the simulation
+	int CurrentTimeStep = 1;
+
+	string VIParr[2] = { "0","0" }, Narr[2] = { "0","0" }, Garr[2] = { "0","0" };
+	int dVIP = 0, dN = 0, dG = 0;
+
+	bool Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
+
+	while (!Stop) 	//as long as events queue is not empty yet
+	{
+		//print current timestep
+		char timestep[10];
+		itoa(CurrentTimeStep, timestep, 10);
+		pGUI->PrintMessage(timestep);
+		ExecuteEvents(CurrentTimeStep);	//execute all events at current time step		
+
+		Work(CurrentTimeStep, VIParr, Narr, Garr, dVIP, dN, dG);
+
+		FillDrawingList();
+		pGUI->UpdateInterface();
+		string msg = "[TS: " + to_string(CurrentTimeStep) + "]"
+			+ " | waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes()) + " | waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "| waiting G Orders: " + to_string(waitingVEGOrders.CountNodes()) + '\n'
+			+ " | Av. VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + " | Av. N cooks: " + to_string(avNORCooks.CountHNodes()) + " | Av. G cooks: " + to_string(avVEGCooks.CountHNodes()) + '\n';
+		if (VIParr[0] != "0")
+		{
+			msg += VIParr[0] + "(" + VIParr[1] + ") ";
+		}
+		if (Narr[0] != "0")
+		{
+			msg += Narr[0] + "(" + Narr[1] + ") ";
+		}
+		if (Garr[0] != "0")
+		{
+			msg += Garr[0] + "(" + Garr[1] + ") ";
+		}
+		msg += +" | Total done VIP Orders: " + to_string(dVIP) + " | Total done N Orders: " + to_string(dN) + "| Total done G Orders: " + to_string(dG) + '\n';
+		pGUI->PrintMessage(msg);
+		Sleep(1000);
+		CurrentTimeStep++;	//advance timestep
+		pGUI->ResetDrawingList();
+		VIParr[0] = "0"; VIParr[1] = "0"; Narr[0] = "0"; Narr[1] = "0"; Garr[0] = "0"; Garr[1] = "0";
+		Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
+	}
+
+	pGUI->PrintMessage("generation done, click to END program");
+	pGUI->waitForClick();
+}
+
+void Restaurant::SILENT()
+{
+	// Taking the input and initializing the cooks and fill the EventsQueue
+	string filename;
+	pGUI->PrintMessage("Simulation Mode. Enter INPUT file name:");
+	filename = pGUI->GetString();	//get user input as a string
+	LoadAll(filename);
+	pGUI->PrintMessage("CLICK to get the Output");
+	pGUI->waitForClick();
+
+	//Now let's start the simulation
+	int CurrentTimeStep = 1;
+
+	string VIParr[2], Narr[2], Garr[2];
+	int dVIP = 0, dN = 0, dG = 0;
+
+	bool Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
+
+	while (!Stop) 	//as long as events queue is not empty yet
+	{
+		//print current timestep
+		char timestep[10];
+		itoa(CurrentTimeStep, timestep, 10);
+		pGUI->PrintMessage(timestep);
+		ExecuteEvents(CurrentTimeStep);	//execute all events at current time step		
+
+		Work(CurrentTimeStep, VIParr, Narr, Garr, dVIP, dN, dG);
+
+		CurrentTimeStep++;	//advance timestep
+
+		Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
+	}
+
+	//////////// HERE
+
+	pGUI->PrintMessage("generation done, click to END program");
+	pGUI->waitForClick();
+}
+
 void Restaurant::SIMULATE()
 {
 	// Taking the input and initializing the cooks and fill the EventsQueue
@@ -537,12 +701,6 @@ void Restaurant::SIMULATE()
 		
 		FillDrawingList();
 		pGUI->UpdateInterface();
-		//string msg = "TS: " + to_string(CurrentTimeStep) + "| waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes())
-		//	+ "| waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "| waiting G Orders: " + to_string(waitingVEGOrders.CountNodes()) + '\n'
-		//	+ "| Av. VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + "| Av. N cooks: " + to_string(avNORCooks.CountHNodes()) + "| Av. G cooks: " + to_string(avVEGCooks.CountHNodes()) + '\n'
-		//	+ VIParr[0] + "(" + VIParr[1] + ")" + Narr[0] + "(" + Narr[1] + ")" + Garr[0] + "(" + Garr[1] + ")" + '\n'
-		//	+ "| Total done VIP Orders: " + "0" + "| Total done N Orders: " + "0" + "| Total done G Orders: " + "0" + '\n';
-		//pGUI->PrintMessage(msg);
 		Sleep(1000);
 		CurrentTimeStep++;	//advance timestep
 		pGUI->ResetDrawingList();

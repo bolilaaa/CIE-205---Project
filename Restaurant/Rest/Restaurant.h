@@ -34,7 +34,7 @@ public:
 	Queue<Order*> waitingVEGOrders;	// List of waiting vegan orders
 	BHeap<Order*> waitingVIPOrders;	// List of waiting VIP orders
 
-	//// in service ////
+	//// in-service ////
 	BHeap<Order*> srvNOROrders;	// List of in service normal orders
 	BHeap<Order*> srvVEGOrders;	// List of in service vegan orders
 	BHeap<Order*> srvVIPOrders;	// List of in service VIP orders
@@ -51,7 +51,7 @@ public:
 	BHeap<Cook*> avVEGCooks;	// List of available vegan cooks
 	BHeap<Cook*> avVIPCooks;	// List of available VIP cooks
 
-	//// in-available ////
+	//// un-available ////
 	BHeap<Cook*> navNORCooks;	// List of in-available normal cooks
 	BHeap<Cook*> navVEGCooks;	// List of in-available vegan cooks
 	BHeap<Cook*> navVIPCooks;	// List of in-available VIP cooks
@@ -78,6 +78,9 @@ public:
 	void LoadAll(string filename);
 
 	/// operation modes ///
+	void INTERACT();
+	void STEPBYSTEP();
+	void SILENT();
 	void SIMULATE();	
 
 	/////////////// Lists functions ///////////////
