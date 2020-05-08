@@ -22,12 +22,12 @@ A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---P
           [
               T=Order *
           ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(245): message : see reference to function template instantiation 'void BHeap<Order *>::rec_insert(HNode<T> *&,double,T)' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(251): message : see reference to function template instantiation 'void BHeap<Order *>::rec_insert(HNode<T> *&,double,T)' being compiled
           with
           [
               T=Order *
           ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(244): message : while compiling class template member function 'void BHeap<Order *>::insert(double,T)'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(250): message : while compiling class template member function 'void BHeap<Order *>::insert(double,T)'
           with
           [
               T=Order *
@@ -41,13 +41,13 @@ A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---P
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(84,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(80,19): warning C4101: 'largest': unreferenced local variable
   Restaurant.cpp
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(82,9): warning C4101: 'pOrd': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(160,32): warning C4101: 'dir': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(131,21): warning C4101: 'BC': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(131,43): warning C4101: 'SM': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(131,25): warning C4101: 'BM': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(131,40): warning C4101: 'SC': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(232,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(385,9): warning C4101: 'pOrd': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(463,32): warning C4101: 'dir': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(434,21): warning C4101: 'BC': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(434,43): warning C4101: 'SM': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(434,25): warning C4101: 'BM': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(434,40): warning C4101: 'SC': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(536,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1323): message : see declaration of 'itoa'
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(83,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(77): message : while compiling class template member function 'void BHeap<Order *>::rec_heapify(HNode<T> *&)'
@@ -55,7 +55,7 @@ A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---P
           [
               T=Order *
           ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(159): message : see reference to function template instantiation 'void BHeap<Order *>::rec_heapify(HNode<T> *&)' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(165): message : see reference to function template instantiation 'void BHeap<Order *>::rec_heapify(HNode<T> *&)' being compiled
           with
           [
               T=Order *
@@ -65,7 +65,7 @@ A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---P
           [
               T=Order *
           ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(261): message : see reference to function template instantiation 'void BHeap<Order *>::rec_deleteMax(HNode<T> *&,T &)' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\BHeap.h(267): message : see reference to function template instantiation 'void BHeap<Order *>::rec_deleteMax(HNode<T> *&,T &)' being compiled
           with
           [
               T=Order *

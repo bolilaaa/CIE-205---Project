@@ -148,6 +148,12 @@ void BHeap<T>::rec_insert(HNode<T>*& subRoot, double key, T data)
 template < typename T>
 void BHeap<T>::rec_deleteMax(HNode<T>*& subRoot, T& maxEntry)
 {
+	if (subRoot->getleft() == nullptr && subRoot->getright() == nullptr)
+	{
+		maxEntry = subRoot->getdata();
+		subRoot = nullptr;
+		return;
+	}	
 	HNode<T>* lastHNode = rec_deepestHNode(subRoot);
 	rec_nullParent(subRoot, lastHNode);
 	lastHNode->setleft(subRoot->getleft());

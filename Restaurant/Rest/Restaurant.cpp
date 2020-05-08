@@ -72,6 +72,309 @@ Restaurant::~Restaurant()
 			delete pGUI;
 }
 
+void Restaurant::Work(int CurrentTimeStep, string* VIParr, string* Narr, string* Garr, int& Vc, int& Nc, int& Gc)
+{
+	Order* pOrd;
+	Cook* pCook;
+	/// VIP orders
+	if (!waitingVIPOrders.empty())
+	{
+		if (!avVIPCooks.empty())
+		{
+			// move cooks
+			avVIPCooks.deleteMax(pCook);
+			pCook->setStatus(NAV);
+
+			// move orders
+			rmvwaitingVIPOrders(pOrd);
+			pOrd->setStatus(SRV);
+			pCook->setAOrder(pOrd);
+			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
+
+			// add with pri
+			navVIPCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
+			AddtosrvVIPOrders(-(pOrd->getFinishTime()), pOrd);
+
+			VIParr[0] = "V" + to_string(pCook->GetID());
+			VIParr[1] = "V" + to_string(pOrd->GetID());
+		}
+		else if (!avNORCooks.empty())
+		{
+			// move cooks
+			avNORCooks.deleteMax(pCook);
+			pCook->setStatus(NAV);
+
+			// move orders
+			rmvwaitingVIPOrders(pOrd);
+			pOrd->setStatus(SRV);
+			pCook->setAOrder(pOrd);
+			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
+
+			// add with pri
+			navNORCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
+			AddtosrvVIPOrders(-(pOrd->getFinishTime()), pOrd);
+
+			VIParr[0] = "N" + to_string(pCook->GetID());
+			VIParr[1] = "V" + to_string(pOrd->GetID());
+		}
+		else if (!avVEGCooks.empty())
+		{
+			// move cooks
+			avVEGCooks.deleteMax(pCook);
+			pCook->setStatus(NAV);
+
+			// move orders
+			rmvwaitingVIPOrders(pOrd);
+			pOrd->setStatus(SRV);
+			pCook->setAOrder(pOrd);
+			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
+
+			// add with pri
+			navVEGCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
+			AddtosrvVIPOrders(-(pOrd->getFinishTime()), pOrd);
+
+			VIParr[0] = "G" + to_string(pCook->GetID());
+			VIParr[1] = "V" + to_string(pOrd->GetID());
+		}
+	}
+
+	/// Vegan Orders
+	if (!waitingVEGOrders.isEmpty())
+	{
+		if (!avVEGCooks.empty())
+		{
+			// move cooks
+			avVEGCooks.deleteMax(pCook);
+			pCook->setStatus(NAV);
+
+			// move orders
+			rmvwaitingVEGOrders(pOrd);
+			pOrd->setStatus(SRV);
+			pCook->setAOrder(pOrd);
+			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
+
+			// add with pri
+			navVEGCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
+			AddtosrvVEGOrders(-(pOrd->getFinishTime()), pOrd);
+
+			Garr[0] = "G" + to_string(pCook->GetID());
+			Garr[1] = "G" + to_string(pOrd->GetID());
+		}
+	}
+
+	/// Normal Orders
+	if (!waitingNOROrders.isEmpty())
+	{
+		if (!avNORCooks.empty())
+		{
+			// move cooks
+			avNORCooks.deleteMax(pCook);
+			pCook->setStatus(NAV);
+
+			// move orders
+			rmvwaitingNOROrders(pOrd);
+			pOrd->setStatus(SRV);
+			pCook->setAOrder(pOrd);
+			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
+
+			// add with pri
+			navNORCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
+			AddtosrvNOROrders(-(pOrd->getFinishTime()), pOrd);
+
+			Narr[0] = "N" + to_string(pCook->GetID());
+			Narr[1] = "N" + to_string(pOrd->GetID());
+		}
+		else if (!avVIPCooks.empty())
+		{
+			// move cooks
+			avVIPCooks.deleteMax(pCook);
+			pCook->setStatus(NAV);
+
+			// move orders
+			rmvwaitingNOROrders(pOrd);
+			pOrd->setStatus(SRV);
+			pCook->setAOrder(pOrd);
+			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
+
+			// add with pri
+			navVIPCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
+			AddtosrvNOROrders(-(pOrd->getFinishTime()), pOrd);
+
+			Narr[0] = "V" + to_string(pCook->GetID());
+			Narr[1] = "N" + to_string(pOrd->GetID());
+		}
+	}
+
+	// Normal
+	if (!navNORCooks.empty())
+	{
+		navNORCooks.peekFront(pCook);
+		if (CurrentTimeStep >= pCook->getAOrder()->getFinishTime())
+		{
+			navNORCooks.deleteMax(pCook);
+			pCook->setdOrders(pCook->getdOrders() + 1);
+			// move cook
+			if (pCook->getdOrders() % pCook->getBreakOrders() == 0) // to be modified to number of orders after which is break
+			{
+				pCook->setStatus(BRK);
+				pCook->setBreakCount(CurrentTimeStep);
+				brkNORCooks.insert(-(pCook->getBreakTime() + pCook->getBreakCount()), pCook);
+			}
+			else
+			{
+				pCook->setStatus(AV);
+				avNORCooks.insert(pCook->getSpeed(), pCook);
+			}
+			// move order
+			pOrd = pCook->getAOrder();
+			pOrd->setStatus(DONE);
+			AddtodoneOrders(pOrd);
+			switch (pOrd->GetType())
+			{
+			case TYPE_NRM:
+				rmvsrvNOROrders(pOrd);
+				Nc++;
+				break;
+			case TYPE_VGAN:
+				rmvsrvVEGOrders(pOrd);
+				Gc++;
+				break;
+			case TYPE_VIP:
+				rmvsrvVIPOrders(pOrd);
+				Vc++;
+				break;
+			}
+		}
+	}
+
+	// Vegan
+	if (!navVEGCooks.empty())
+	{
+		navVEGCooks.peekFront(pCook);
+		if (CurrentTimeStep >= (pCook->getAOrder()->getFinishTime()))
+		{
+			navVEGCooks.deleteMax(pCook);
+			pCook->setdOrders(pCook->getdOrders() + 1);
+			// move cook
+			if (pCook->getdOrders() % pCook->getBreakOrders() == 0) // to be modified to number of orders after which is break
+			{
+				pCook->setStatus(BRK);
+				pCook->setBreakCount(CurrentTimeStep);
+				brkVEGCooks.insert(-(pCook->getBreakTime() + pCook->getBreakCount()), pCook);
+			}
+			else
+			{
+				pCook->setStatus(AV);
+				avVEGCooks.insert(pCook->getSpeed(), pCook);
+			}
+			// move order
+			pOrd = pCook->getAOrder();
+			pOrd->setStatus(DONE);
+			AddtodoneOrders(pOrd);
+			switch (pOrd->GetType())
+			{
+			case TYPE_NRM:
+				rmvsrvNOROrders(pOrd);
+				Nc++;
+				break;
+			case TYPE_VGAN:
+				rmvsrvVEGOrders(pOrd);
+				Gc++;
+				break;
+			case TYPE_VIP:
+				rmvsrvVIPOrders(pOrd);
+				Vc++;
+				break;
+			}
+		}
+	}
+
+	// VIP
+	if (!navVIPCooks.empty())
+	{
+		navVIPCooks.peekFront(pCook);
+		if (CurrentTimeStep >= (pCook->getAOrder()->getFinishTime()))
+		{
+			navVIPCooks.deleteMax(pCook);
+			pCook->setdOrders(pCook->getdOrders() + 1);
+			// move cook
+			if (pCook->getdOrders() % pCook->getBreakOrders() == 0) // to be modified to number of orders after which is break
+			{
+				pCook->setStatus(BRK);
+				pCook->setBreakCount(CurrentTimeStep);
+				brkVIPCooks.insert(-(pCook->getBreakTime() + pCook->getBreakCount()), pCook);
+			}
+			else
+			{
+				pCook->setStatus(AV);
+				avVIPCooks.insert(pCook->getSpeed(), pCook);
+			}
+			// move order
+			pOrd = pCook->getAOrder();
+			pOrd->setStatus(DONE);
+			AddtodoneOrders(pOrd);
+			switch (pOrd->GetType())
+			{
+			case TYPE_NRM:
+				rmvsrvNOROrders(pOrd);
+				Nc++;
+				break;
+			case TYPE_VGAN:
+				rmvsrvVEGOrders(pOrd);
+				Gc++;
+				break;
+			case TYPE_VIP:
+				rmvsrvVIPOrders(pOrd);
+				Vc++;
+				break;
+			}
+		}
+	}
+
+	// getting back to work out of the break
+	// Normal
+	if (!brkNORCooks.empty())
+	{
+		navNORCooks.peekFront(pCook);
+		if (CurrentTimeStep == (pCook->getBreakTime() + pCook->getBreakCount()))
+		{
+			// move cook
+			navNORCooks.deleteMax(pCook);
+			pCook->setStatus(AV);
+			pCook->setBreakCount(0);
+			avNORCooks.insert(pCook->getSpeed(), pCook);
+		}
+	}
+
+	// Vegan
+	if (!brkVEGCooks.empty())
+	{
+		navVEGCooks.peekFront(pCook);
+		if (CurrentTimeStep == (pCook->getBreakTime() + pCook->getBreakCount()))
+		{
+			// move cook
+			navVEGCooks.deleteMax(pCook);
+			pCook->setStatus(AV);
+			pCook->setBreakCount(0);
+			avVEGCooks.insert(pCook->getSpeed(), pCook);
+		}
+	}
+
+	// VIP
+	if (!brkVIPCooks.empty())
+	{
+		navVIPCooks.peekFront(pCook);
+		if (CurrentTimeStep == (pCook->getBreakTime() + pCook->getBreakCount()))
+		{
+			// move cook
+			navVIPCooks.deleteMax(pCook);
+			pCook->setStatus(AV);
+			pCook->setBreakCount(0);
+			avVIPCooks.insert(pCook->getSpeed(), pCook);
+		}
+	}
+}
+
 void Restaurant::FillDrawingList()
 {
 	//This function should be implemented in phase1
@@ -222,6 +525,7 @@ void Restaurant::SIMULATE()
 	int CurrentTimeStep = 1;
 
 	string VIParr[2], Narr[2], Garr[2];
+	int dVIP = 0, dN = 0, dG = 0;
 
 	bool Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
 
@@ -233,305 +537,17 @@ void Restaurant::SIMULATE()
 		pGUI->PrintMessage(timestep);
 		ExecuteEvents(CurrentTimeStep);	//execute all events at current time step		
 
-		Order* pOrd;	
-		Cook* pCook;	
-		/// VIP orders
-		if (!waitingVIPOrders.empty()) 
-		{
-			if (!avVIPCooks.empty())
-			{
-				// move cooks
-				avVIPCooks.deleteMax(pCook);
-				pCook->setStatus(NAV);
-				
-				// move orders
-				rmvwaitingVIPOrders(pOrd);
-				pOrd->setStatus(SRV);
-				pCook->setAOrder(pOrd);
-				pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
-
-				// add with pri
-				navVIPCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
-				AddtosrvVIPOrders(-(pOrd->getFinishTime()), pOrd);
-
-				VIParr[0] = "V" + to_string(pCook->GetID());
-				VIParr[1] = "V" + to_string(pOrd->GetID());
-			}
-			else if (!avNORCooks.empty())
-			{
-				// move cooks
-				avNORCooks.deleteMax(pCook);
-				pCook->setStatus(NAV);
-
-				// move orders
-				rmvwaitingVIPOrders(pOrd);
-				pOrd->setStatus(SRV);
-				pCook->setAOrder(pOrd);
-				pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
-
-				// add with pri
-				navNORCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
-				AddtosrvVIPOrders(-(pOrd->getFinishTime()), pOrd);
-
-				VIParr[0] = "N" + to_string(pCook->GetID());
-				VIParr[1] = "V" + to_string(pOrd->GetID());
-			}
-			else if (!avVEGCooks.empty())
-			{
-				// move cooks
-				avVEGCooks.deleteMax(pCook);
-				pCook->setStatus(NAV);
-
-				// move orders
-				rmvwaitingVIPOrders(pOrd);
-				pOrd->setStatus(SRV);
-				pCook->setAOrder(pOrd);
-				pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
-
-				// add with pri
-				navVEGCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
-				AddtosrvVIPOrders(-(pOrd->getFinishTime()), pOrd);
-
-				VIParr[0] = "G" + to_string(pCook->GetID());
-				VIParr[1] = "V" + to_string(pOrd->GetID());
-			}
-		}
-
-		/// Vegan Orders
-		if (!waitingVEGOrders.isEmpty())
-		{
-			if (!avVEGCooks.empty())
-			{
-				// move cooks
-				avVEGCooks.deleteMax(pCook);
-				pCook->setStatus(NAV);
-
-				// move orders
-				rmvwaitingVEGOrders(pOrd);
-				pOrd->setStatus(SRV);
-				pCook->setAOrder(pOrd);
-				pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
-
-				// add with pri
-				navVEGCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
-				AddtosrvVEGOrders(-(pOrd->getFinishTime()), pOrd);
-
-				Garr[0] = "G" + to_string(pCook->GetID());
-				Garr[1] = "G" + to_string(pOrd->GetID());
-			}
-		}
-
-		/// Normal Orders
-		if (!waitingNOROrders.isEmpty())
-		{
-			if (!avNORCooks.empty())
-			{
-				// move cooks
-				avNORCooks.deleteMax(pCook);
-				pCook->setStatus(NAV);
-
-				// move orders
-				rmvwaitingNOROrders(pOrd);
-				pOrd->setStatus(SRV);
-				pCook->setAOrder(pOrd);
-				pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
-				
-				// add with pri
-				navNORCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
-				AddtosrvNOROrders(-(pOrd->getFinishTime()), pOrd);
-
-				Narr[0] = "N" + to_string(pCook->GetID());
-				Narr[1] = "N" + to_string(pOrd->GetID());
-			}
-			else if (!avVIPCooks.empty())
-			{
-				// move cooks
-				avVIPCooks.deleteMax(pCook);
-				pCook->setStatus(NAV);
-
-				// move orders
-				rmvwaitingNOROrders(pOrd);
-				pOrd->setStatus(SRV);
-				pCook->setAOrder(pOrd);
-				pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
-
-				// add with pri
-				navVIPCooks.insert(-(pCook->getAOrder()->getFinishTime()), pCook);
-				AddtosrvNOROrders(-(pOrd->getFinishTime()), pOrd);
-
-				Narr[0] = "V" + to_string(pCook->GetID());
-				Narr[1] = "N" + to_string(pOrd->GetID());
-			}
-		}
-
-		// Normal
-		if (!navNORCooks.empty())
-		{
-			navNORCooks.peekFront(pCook);
-			if (CurrentTimeStep >= pCook->getAOrder()->getFinishTime())
-			{
-				navNORCooks.deleteMax(pCook);
-				pCook->setdOrders(pCook->getdOrders() + 1);
-				// move cook
-				if (pCook->getdOrders() % pCook->getBreakOrders() == 0) // to be modified to number of orders after which is break
-				{
-					pCook->setStatus(BRK);
-					pCook->setBreakCount(CurrentTimeStep);
-					brkNORCooks.insert(-(pCook->getBreakTime() + pCook->getBreakCount()),pCook);
-				}
-				else
-				{
-					pCook->setStatus(AV);
-					avNORCooks.insert(pCook->getSpeed(),pCook);
-				}
-				// move order
-				pOrd = pCook->getAOrder();
-				pOrd->setStatus(DONE);
-				AddtodoneOrders(pOrd);
-				switch (pOrd->GetType())
-				{
-				case TYPE_NRM:
-					rmvsrvNOROrders(pOrd);
-					break;
-				case TYPE_VGAN:
-					rmvsrvVEGOrders(pOrd);
-					break;
-				case TYPE_VIP:
-					rmvsrvVIPOrders(pOrd);
-					break;
-				}
-			}
-		}
-			
-		// Vegan
-		if (!navVEGCooks.empty())
-		{
-			navVEGCooks.peekFront(pCook);
-			if (CurrentTimeStep >= (pCook->getAOrder()->getFinishTime()))
-			{
-				navVEGCooks.deleteMax(pCook);
-				pCook->setdOrders(pCook->getdOrders() + 1);
-				// move cook
-				if (pCook->getdOrders() % pCook->getBreakOrders() == 0) // to be modified to number of orders after which is break
-				{
-					pCook->setStatus(BRK);
-					pCook->setBreakCount(CurrentTimeStep);
-					brkVEGCooks.insert(-(pCook->getBreakTime() + pCook->getBreakCount()), pCook);
-				}
-				else
-				{
-					pCook->setStatus(AV);
-					avVEGCooks.insert(pCook->getSpeed(), pCook);
-				}
-				// move order
-				pOrd = pCook->getAOrder();
-				pOrd->setStatus(DONE);
-				AddtodoneOrders(pOrd);
-				switch (pOrd->GetType())
-				{
-				case TYPE_NRM:
-					rmvsrvNOROrders(pOrd);
-					break;
-				case TYPE_VGAN:
-					rmvsrvVEGOrders(pOrd);
-					break;
-				case TYPE_VIP:
-					rmvsrvVIPOrders(pOrd);
-					break;
-				}
-			}
-		}
-			
-		// VIP
-		if (!navVIPCooks.empty())
-		{
-			navVIPCooks.peekFront(pCook);
-			if (CurrentTimeStep >= (pCook->getAOrder()->getFinishTime()))
-			{
-				navVIPCooks.deleteMax(pCook);
-				pCook->setdOrders(pCook->getdOrders() + 1);
-				// move cook
-				if (pCook->getdOrders() % pCook->getBreakOrders() == 0) // to be modified to number of orders after which is break
-				{
-					pCook->setStatus(BRK);
-					pCook->setBreakCount(CurrentTimeStep);
-					brkVIPCooks.insert(-(pCook->getBreakTime() + pCook->getBreakCount()), pCook);
-				}
-				else
-				{
-					pCook->setStatus(AV);
-					avVIPCooks.insert(pCook->getSpeed(), pCook);
-				}
-				// move order
-				pOrd = pCook->getAOrder();
-				pOrd->setStatus(DONE);
-				AddtodoneOrders(pOrd);
-				switch (pOrd->GetType())
-				{
-				case TYPE_NRM:
-					rmvsrvNOROrders(pOrd);
-					break;
-				case TYPE_VGAN:
-					rmvsrvVEGOrders(pOrd);
-					break;
-				case TYPE_VIP:
-					rmvsrvVIPOrders(pOrd);
-					break;
-				}
-			}
-		}
-
-		// getting back to work out of the break
-		// Normal
-		if (!brkNORCooks.empty())
-		{			
-			navNORCooks.peekFront(pCook);
-			if (CurrentTimeStep == (pCook->getBreakTime() + pCook->getBreakCount()))
-			{
-				// move cook
-				navNORCooks.deleteMax(pCook);
-				pCook->setStatus(AV);
-				pCook->setBreakCount(0);
-				avNORCooks.insert(pCook->getSpeed(),pCook);
-			}
-		}
-
-		// Vegan
-		if (!brkVEGCooks.empty())
-		{
-			navVEGCooks.peekFront(pCook);
-			if (CurrentTimeStep == (pCook->getBreakTime() + pCook->getBreakCount()))
-			{
-				// move cook
-				navVEGCooks.deleteMax(pCook);
-				pCook->setStatus(AV);
-				pCook->setBreakCount(0);
-				avVEGCooks.insert(pCook->getSpeed(), pCook);
-			}
-		}
-
-		// VIP
-		if (!brkVIPCooks.empty())
-		{
-			navVIPCooks.peekFront(pCook);
-			if (CurrentTimeStep == (pCook->getBreakTime() + pCook->getBreakCount()))
-			{
-				// move cook
-				navVIPCooks.deleteMax(pCook);
-				pCook->setStatus(AV);
-				pCook->setBreakCount(0);
-				avVIPCooks.insert(pCook->getSpeed(), pCook);
-			}
-		}
-
+		Work(CurrentTimeStep, VIParr, Narr, Garr, dVIP, dN, dG);
+		
 		FillDrawingList();
 		pGUI->UpdateInterface();
+		//string msg = "TS: " + to_string(CurrentTimeStep) + "| waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes())
+		//	+ "| waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "| waiting G Orders: " + to_string(waitingVEGOrders.CountNodes()) + '\n'
+		//	+ "| Av. VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + "| Av. N cooks: " + to_string(avNORCooks.CountHNodes()) + "| Av. G cooks: " + to_string(avVEGCooks.CountHNodes()) + '\n'
+		//	+ VIParr[0] + "(" + VIParr[1] + ")" + Narr[0] + "(" + Narr[1] + ")" + Garr[0] + "(" + Garr[1] + ")" + '\n'
+		//	+ "| Total done VIP Orders: " + "0" + "| Total done N Orders: " + "0" + "| Total done G Orders: " + "0" + '\n';
+		//pGUI->PrintMessage(msg);
 		Sleep(1000);
-		/*string msg = "TS: " + to_string(CurrentTimeStep) + "| waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes())
-			+ "| waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "| waiting G Orders: " + to_string(waitingVEGOrders.CountNodes()) + '\n'
-			+ "| Av. VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + "| Av. N cooks: " + to_string(avNORCooks.CountHNodes()) + "| Av. G cooks: " + to_string(avVEGCooks.CountHNodes()) + '\n'
-			+ VIParr[0] + "(" + VIParr[1] + ")" + Narr[0] + "(" + Narr[1] + ")" + Garr[0] + "(" + Garr[1] + ")" + '\n'
-			+ "| Total done VIP Orders: " + "0" + "| Total done N Orders: " + "0" + "| Total done G Orders: " + "0" + '\n';*/
 		CurrentTimeStep++;	//advance timestep
 		pGUI->ResetDrawingList();
 

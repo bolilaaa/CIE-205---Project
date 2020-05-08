@@ -73,6 +73,8 @@ public:
 public:
 	Restaurant();
 	~Restaurant();
+
+	void Work(int CurrentTimeStep, string* Varr, string* Narr, string* Garr, int& Vc, int& Nc, int& Gc);
 	/// general operations ///
 	void ExecuteEvents(int TimeStep);	//executes all events at current timestep
 	void PromoteEvents(int TimeStep);
