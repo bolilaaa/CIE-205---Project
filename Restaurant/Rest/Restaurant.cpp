@@ -93,6 +93,7 @@ void Restaurant::Work(int CurrentTimeStep, string* VIParr, string* Narr, string*
 			// move orders
 			rmvwaitingVIPOrders(pOrd);
 			pOrd->setStatus(SRV);
+			pOrd->setStartSrvTime(CurrentTimeStep);
 			pCook->setAOrder(pOrd);
 			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
 
@@ -112,6 +113,7 @@ void Restaurant::Work(int CurrentTimeStep, string* VIParr, string* Narr, string*
 			// move orders
 			rmvwaitingVIPOrders(pOrd);
 			pOrd->setStatus(SRV);
+			pOrd->setStartSrvTime(CurrentTimeStep);
 			pCook->setAOrder(pOrd);
 			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
 
@@ -131,6 +133,7 @@ void Restaurant::Work(int CurrentTimeStep, string* VIParr, string* Narr, string*
 			// move orders
 			rmvwaitingVIPOrders(pOrd);
 			pOrd->setStatus(SRV);
+			pOrd->setStartSrvTime(CurrentTimeStep);
 			pCook->setAOrder(pOrd);
 			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
 
@@ -155,6 +158,7 @@ void Restaurant::Work(int CurrentTimeStep, string* VIParr, string* Narr, string*
 			// move orders
 			rmvwaitingVEGOrders(pOrd);
 			pOrd->setStatus(SRV);
+			pOrd->setStartSrvTime(CurrentTimeStep);
 			pCook->setAOrder(pOrd);
 			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
 
@@ -179,6 +183,7 @@ void Restaurant::Work(int CurrentTimeStep, string* VIParr, string* Narr, string*
 			// move orders
 			rmvwaitingNOROrders(pOrd);
 			pOrd->setStatus(SRV);
+			pOrd->setStartSrvTime(CurrentTimeStep);
 			pCook->setAOrder(pOrd);
 			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
 
@@ -198,6 +203,7 @@ void Restaurant::Work(int CurrentTimeStep, string* VIParr, string* Narr, string*
 			// move orders
 			rmvwaitingNOROrders(pOrd);
 			pOrd->setStatus(SRV);
+			pOrd->setStartSrvTime(CurrentTimeStep);
 			pCook->setAOrder(pOrd);
 			pOrd->setFinTime(CurrentTimeStep + pCook->getSpeed());
 
