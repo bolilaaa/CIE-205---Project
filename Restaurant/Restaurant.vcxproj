@@ -100,14 +100,8 @@
     <ClInclude Include="Events\CancelEvent.h" />
     <ClInclude Include="Events\Event.h" />
     <ClInclude Include="Generic_DS\BHeap.h" />
-    <ClInclude Include="Generic_DS\CompareBPri.h" />
-    <ClInclude Include="Generic_DS\CompareCPri.h" />
-    <ClInclude Include="Generic_DS\CompareOSPri.h" />
-    <ClInclude Include="Generic_DS\CompareOWPri.h" />
     <ClInclude Include="Generic_DS\HNode.h" />
     <ClInclude Include="Generic_DS\Node.h" />
-    <ClInclude Include="Generic_DS\pqNode.h" />
-    <ClInclude Include="Generic_DS\priorityQueue.h" />
     <ClInclude Include="Generic_DS\Queue.h" />
     <ClInclude Include="GUI\GUI.h" />
     <ClInclude Include="Rest\Cook.h" />

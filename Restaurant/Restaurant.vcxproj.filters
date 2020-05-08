@@ -108,24 +108,6 @@
     <ClInclude Include="Rest\Cook.h">
       <Filter>Restaurant</Filter>
     </ClInclude>
-    <ClInclude Include="Generic_DS\CompareOSPri.h">
-      <Filter>Generic_DS</Filter>
-    </ClInclude>
-    <ClInclude Include="Generic_DS\CompareOWPri.h">
-      <Filter>Generic_DS</Filter>
-    </ClInclude>
-    <ClInclude Include="Generic_DS\CompareBPri.h">
-      <Filter>Generic_DS</Filter>
-    </ClInclude>
-    <ClInclude Include="Generic_DS\CompareCPri.h">
-      <Filter>Generic_DS</Filter>
-    </ClInclude>
-    <ClInclude Include="Generic_DS\pqNode.h">
-      <Filter>Generic_DS</Filter>
-    </ClInclude>
-    <ClInclude Include="Generic_DS\priorityQueue.h">
-      <Filter>Generic_DS</Filter>
-    </ClInclude>
     <ClInclude Include="Events\CancelEvent.h">
       <Filter>Events</Filter>
     </ClInclude>

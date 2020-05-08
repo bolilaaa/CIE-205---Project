@@ -512,6 +512,30 @@ void Restaurant::LoadAll(string filename) {
 	file_load.close();
 }
 
+
+void Restaurant::Output(string filename, int& Nc, int& Gc, int& Vc) {
+	Order* ord;
+	double sumWait = 0, sumSRV = 0;
+	file_save.open(filename.c_str()); //opening the file
+	file_save << "FT     ID     AT    WT    ST" << endl;
+	//getting the data of each order from the done queue
+	while (!doneOrders.isEmpty()) {
+		doneOrders.dequeue(ord);
+		file_save << ord->getFinishTime() << "      " << ord->GetID() << "      " << ord->getArrivalTime() << "     " << (ord->getFinishTime() - ord->getArrivalTime()) << "     " << (ord->getFinishTime() - ord->getServTime()) << endl;
+		sumWait += (ord->getFinishTime() - ord->getArrivalTime());
+		sumSRV += (ord->getFinishTime() - ord->getServTime());
+		delete ord;
+	}
+	file_save << "..........................................." << endl;
+	file_save << "..........................................." << endl;
+	int SumOrd = Vc + Nc + Gc;
+	file_save << "Orders: " << SumOrd << "  [Norm : " << Nc << ", Veg : " << Gc << ", VIP : " << Vc << " ]" << endl;
+	file_save << "cooks: " << numCNOR + numCVEG + numCVIP << "  [Norm : " << numCNOR << ", Veg : " << numCVEG << ", VIP : " << numCVIP << " ]" << endl;
+	file_save << "AVG Wait = " << sumWait / SumOrd << ",  AVG SRV = " << sumSRV / SumOrd << endl;
+	file_save << "Auto Promoted : " << AutoPromoted << endl;
+	file_save.close();
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////  Operation Modes   /////////////////////////////
@@ -520,7 +544,7 @@ void Restaurant::INTERACT()
 {
 	// Taking the input and initializing the cooks and fill the EventsQueue
 	string filename;
-	pGUI->PrintMessage("Simulation Mode. Enter INPUT file name:");
+	pGUI->PrintMessage("Interactive Mode. Enter INPUT file name:");
 	filename = pGUI->GetString();	//get user input as a string
 	LoadAll(filename);
 	pGUI->PrintMessage("CLICK to start");
@@ -547,23 +571,23 @@ void Restaurant::INTERACT()
 		FillDrawingList();
 		pGUI->UpdateInterface();
 		string msg1 = "[TS: " + to_string(CurrentTimeStep) + "]";
-		string msg2 = "waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes()) + " | waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "| waiting G Orders: " + to_string(waitingVEGOrders.CountNodes());
-		string msg3 = "Av. VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + " | Av. N cooks: " + to_string(avNORCooks.CountHNodes()) + " | Av. G cooks: " + to_string(avVEGCooks.CountHNodes());
-		string msg4;
+		string msg2 = "Waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes()) + "         |    Waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "       |   Waiting G Orders: " + to_string(waitingVEGOrders.CountNodes());
+		string msg3 = "Available VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + "       |     Available N cooks: " + to_string(avNORCooks.CountHNodes()) + "      |   Available G cooks: " + to_string(avVEGCooks.CountHNodes());
+		string msg4 = "Total done VIP Orders: " + to_string(dVIP) + "   |   Total done N Orders: " + to_string(dN) + "   |   Total done G Orders: " + to_string(dG) + "         ||-> CLICK to continue";
+		string msg5;
 		if (VIParr[0] != "0")
 		{
-			msg4 += VIParr[0] + "(" + VIParr[1] + ") ";
+			msg5 += VIParr[0] + "(" + VIParr[1] + ") ";
 		}
 		if (Narr[0] != "0")
 		{
-			msg4 += Narr[0] + "(" + Narr[1] + ") ";
+			msg5 += Narr[0] + "(" + Narr[1] + ") ";
 		}
 		if (Garr[0] != "0")
 		{
-			msg4 += Garr[0] + "(" + Garr[1] + ") ";
+			msg5 += Garr[0] + "(" + Garr[1] + ") ";
 		}
-		string msg5 = +"Total done VIP Orders: " + to_string(dVIP) + " | Total done N Orders: " + to_string(dN) + "| Total done G Orders: " + to_string(dG);
-				+ "CLICK to continue";
+
 		pGUI->PrintMessage(msg1);
 		pGUI->PrintMessage2(msg2);
 		pGUI->PrintMessage3(msg3);
@@ -576,6 +600,11 @@ void Restaurant::INTERACT()
 		Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
 	}
 
+	string filenamee;
+	pGUI->PrintMessage("Interactive Mode. Enter OUTPUT file name:");
+	filenamee = pGUI->GetString();
+	Output(filenamee, dN, dG, dVIP);
+
 	pGUI->PrintMessage("generation done, click to END program");
 	pGUI->waitForClick();
 }
@@ -584,7 +613,7 @@ void Restaurant::STEPBYSTEP()
 {
 	// Taking the input and initializing the cooks and fill the EventsQueue
 	string filename;
-	pGUI->PrintMessage("Simulation Mode. Enter INPUT file name:");
+	pGUI->PrintMessage("StepByStep Mode. Enter INPUT file name:");
 	filename = pGUI->GetString();	//get user input as a string
 	LoadAll(filename);
 	pGUI->PrintMessage("CLICK to start");
@@ -611,23 +640,23 @@ void Restaurant::STEPBYSTEP()
 		FillDrawingList();
 		pGUI->UpdateInterface();
 		string msg1 = "[TS: " + to_string(CurrentTimeStep) + "]";
-		string msg2 = "waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes()) + " | waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "| waiting G Orders: " + to_string(waitingVEGOrders.CountNodes());
-		string msg3 = "Av. VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + " | Av. N cooks: " + to_string(avNORCooks.CountHNodes()) + " | Av. G cooks: " + to_string(avVEGCooks.CountHNodes());
-		string msg4;
+		string msg2 = "Waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes()) + "         |    Waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "       |   Waiting G Orders: " + to_string(waitingVEGOrders.CountNodes());
+		string msg3 = "Available VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + "       |     Available N cooks: " + to_string(avNORCooks.CountHNodes()) + "      |   Available G cooks: " + to_string(avVEGCooks.CountHNodes());
+		string msg4 = "Total done VIP Orders: " + to_string(dVIP) + "   |   Total done N Orders: " + to_string(dN) + "   |   Total done G Orders: " + to_string(dG) + "         ||-> CLICK to continue";
+		string msg5;
 		if (VIParr[0] != "0")
 		{
-			msg4 += VIParr[0] + "(" + VIParr[1] + ") ";
+			msg5 += VIParr[0] + "(" + VIParr[1] + ") ";
 		}
 		if (Narr[0] != "0")
 		{
-			msg4 += Narr[0] + "(" + Narr[1] + ") ";
+			msg5 += Narr[0] + "(" + Narr[1] + ") ";
 		}
 		if (Garr[0] != "0")
 		{
-			msg4 += Garr[0] + "(" + Garr[1] + ") ";
+			msg5 += Garr[0] + "(" + Garr[1] + ") ";
 		}
-		string msg5 = +"Total done VIP Orders: " + to_string(dVIP) + " | Total done N Orders: " + to_string(dN) + "| Total done G Orders: " + to_string(dG);
-		+"CLICK to continue";
+
 		pGUI->PrintMessage(msg1);
 		pGUI->PrintMessage2(msg2);
 		pGUI->PrintMessage3(msg3);
@@ -640,6 +669,11 @@ void Restaurant::STEPBYSTEP()
 		Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
 	}
 
+	string filenamee;
+	pGUI->PrintMessage("StepByStep Mode. Enter OUTPUT file name:");
+	filenamee = pGUI->GetString();
+	Output(filenamee, dN, dG, dVIP);
+
 	pGUI->PrintMessage("generation done, click to END program");
 	pGUI->waitForClick();
 }
@@ -648,13 +682,11 @@ void Restaurant::SILENT()
 {
 	// Taking the input and initializing the cooks and fill the EventsQueue
 	string filename;
-	pGUI->PrintMessage("Simulation Mode. Enter INPUT file name:");
+	pGUI->PrintMessage("Silent Mode. Enter INPUT file name:");
 	filename = pGUI->GetString();	//get user input as a string
 	LoadAll(filename);
-	pGUI->PrintMessage("CLICK to get the Output");
-	pGUI->waitForClick();
 
-	//Now let's start the simulation
+	//Now let's start the work
 	int CurrentTimeStep = 1;
 
 	string VIParr[2], Narr[2], Garr[2];
@@ -677,7 +709,10 @@ void Restaurant::SILENT()
 		Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
 	}
 
-	//////////// HERE
+	string filenamee;
+	pGUI->PrintMessage("Silent Mode. Enter OUTPUT file name:");
+	filenamee = pGUI->GetString();
+	Output(filenamee, dN, dG, dVIP);
 
 	pGUI->PrintMessage("generation done, click to END program");
 	pGUI->waitForClick();
@@ -719,6 +754,11 @@ void Restaurant::SIMULATE()
 
 		Stop = EventsQueue.isEmpty() && waitingVIPOrders.empty() && waitingNOROrders.isEmpty() && waitingVEGOrders.isEmpty() && srvVIPOrders.empty() && srvNOROrders.empty() && srvVEGOrders.empty() && navVIPCooks.empty() && navNORCooks.empty() && navVEGCooks.empty();
 	}
+
+	string filenamee;
+	pGUI->PrintMessage("Simulation Mode. Enter OUTPUT file name:");
+	filenamee = pGUI->GetString();
+	Output(filenamee, dN, dG, dVIP);
 
 	pGUI->PrintMessage("generation done, click to END program");
 	pGUI->waitForClick();
