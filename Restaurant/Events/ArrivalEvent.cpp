@@ -29,16 +29,45 @@ void ArrivalEvent::Execute(Restaurant* pRest)
 		pRest->AddtowaitingVIPOrders(pOrd);
 	}
 	else if (OrdType == TYPE_NRM) {
-		if (pRest->crrtimestep >= EventTime + pRest->AutoPromotion)
+		//pRest->crrtimestep >= EventTime + pRest->AutoPromotion
+		int countwaitingNOR, countsrvNOR, Tprep, avCookSpeed;
+		pRest->waitingNOROrders.toArray(countwaitingNOR);
+		pRest->srvNOROrders.toArray(countsrvNOR);
+		Tprep = countsrvNOR + countwaitingNOR;
+
+		Cook* pCook;
+		if (!pRest->avNORCooks.empty())
+		{
+			pRest->avNORCooks.peekFront(pCook);
+			avCookSpeed = pCook->getSpeed();	
+			pRest->navNORCooks.peekFront(pCook);
+			avCookSpeed += pCook->getSpeed();
+			avCookSpeed /= 2;
+		}
+		else
+		{
+			pRest->navNORCooks.peekFront(pCook);
+			avCookSpeed = pCook->getSpeed();
+		}
+
+		if (EventTime + pRest->AutoPromotion <= pRest->crrtimestep + (Tprep*avCookSpeed))
 		{
 			pOrd->setSize(OrdSize);
 			pOrd->setMoney(OrdMoney);
 			pOrd->setArrivalTime(EventTime);
 			pOrd->setStatus(WAIT);
 			pOrd->setType(TYPE_VIP);
+			double pri;
 			Order* pOrdTemp;
-			pRest->waitingVIPOrders.peekFront(pOrdTemp);
-			int pri = pOrdTemp->Getpriority();
+			if (!pRest->waitingVIPOrders.empty())
+			{
+				pRest->waitingVIPOrders.peekFront(pOrdTemp);
+				pri = pOrdTemp->Getpriority();
+			}
+			else
+			{
+				pri = (OrdMoney * OrdSize) / EventTime;
+			}
 			pRest->waitingVIPOrders.insert(pri, pOrd);
 			pRest->AutoPromoted++;
 		}

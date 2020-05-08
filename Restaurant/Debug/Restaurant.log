@@ -1,0 +1,172 @@
+﻿  CMUgraphics.cpp
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\CMUgraphics.cpp(751,1): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\string.h(133): message : see declaration of 'strcpy'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\CMUgraphics.cpp(1164,1): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1774): message : see declaration of 'sprintf'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\CMUgraphics.cpp(1171,1): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1774): message : see declaration of 'sprintf'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\CMUgraphics.cpp(1202,1): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1774): message : see declaration of 'sprintf'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\CMUgraphics.cpp(1210,1): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1774): message : see declaration of 'sprintf'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\CMUgraphics.cpp(1357,23): warning C4018: '>': signed/unsigned mismatch
+  colors.cpp
+  image.cpp
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\image.cpp(115,29): warning C4018: '<': signed/unsigned mismatch
+  keyqueue.cpp
+  mousequeue.cpp
+  windowinput.cpp
+  Demo_Main.cpp
+  CancelEvent.cpp
+  Event.cpp
+  ArrivalEvent.cpp
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(25,17): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(55,18): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(77,18): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(85,17): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(83,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(77): message : while compiling class template member function 'void BHeap<Order *>::rec_heapify(HNode<T> *&)'
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(145): message : see reference to function template instantiation 'void BHeap<Order *>::rec_heapify(HNode<T> *&)' being compiled
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(170): message : while compiling class template member function 'int BHeap<Order *>::rec_CountHNodes(HNode<T> *&)'
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(279): message : see reference to function template instantiation 'int BHeap<Order *>::rec_CountHNodes(HNode<T> *&)' being compiled
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(241): message : while compiling class template member function 'bool BHeap<Order *>::empty(void) const'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(62): message : see reference to function template instantiation 'bool BHeap<Order *>::empty(void) const' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(37): message : see reference to class template instantiation 'BHeap<Order *>' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(84,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  PromoteEvent.cpp
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(83,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(77): message : while compiling class template member function 'void BHeap<Order *>::rec_heapify(HNode<T> *&)'
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(145): message : see reference to function template instantiation 'void BHeap<Order *>::rec_heapify(HNode<T> *&)' being compiled
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(133): message : while compiling class template member function 'void BHeap<Order *>::rec_insert(HNode<T> *&,double,T)'
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(251): message : see reference to function template instantiation 'void BHeap<Order *>::rec_insert(HNode<T> *&,double,T)' being compiled
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(250): message : while compiling class template member function 'void BHeap<Order *>::insert(double,T)'
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\PromoteEvent.cpp(21): message : see reference to function template instantiation 'void BHeap<Order *>::insert(double,T)' being compiled
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(37): message : see reference to class template instantiation 'BHeap<Order *>' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(84,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  GUI.cpp
+  Cook.cpp
+  Order.cpp
+  Restaurant.cpp
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(395,9): warning C4101: 'pOrd': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(473,32): warning C4101: 'dir': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(444,21): warning C4101: 'BC': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(444,43): warning C4101: 'SM': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(444,25): warning C4101: 'BM': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(444,40): warning C4101: 'SC': unreferenced local variable
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(563,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1323): message : see declaration of 'itoa'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(632,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1323): message : see declaration of 'itoa'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(699,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1323): message : see declaration of 'itoa'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(741,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1323): message : see declaration of 'itoa'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(83,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(77): message : while compiling class template member function 'void BHeap<Order *>::rec_heapify(HNode<T> *&)'
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(165): message : see reference to function template instantiation 'void BHeap<Order *>::rec_heapify(HNode<T> *&)' being compiled
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(150): message : while compiling class template member function 'void BHeap<Order *>::rec_deleteMax(HNode<T> *&,T &)'
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(267): message : see reference to function template instantiation 'void BHeap<Order *>::rec_deleteMax(HNode<T> *&,T &)' being compiled
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(38): message : while compiling class template member function 'BHeap<Order *>::BHeap(void)'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(18): message : see reference to function template instantiation 'BHeap<Order *>::BHeap(void)' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(37): message : see reference to class template instantiation 'BHeap<Order *>' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(84,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  jpegload.c
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\jpegload.c(23,1): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(208): message : see declaration of 'fopen'
+  jcomapi.c
+  jcparam.c
+  jdapimin.c
+  jdapistd.c
+  jdatasrc.c
+  jdcoefct.c
+  jdcolor.c
+  jddctmgr.c
+  jdhuff.c
+  jdinput.c
+  jdmainct.c
+  jdmarker.c
+  jdmaster.c
+  jdmerge.c
+  jdphuff.c
+  jdpostct.c
+  jdsample.c
+  jdtrans.c
+  jerror.c
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\jpeg\jerror.c(169,1): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1774): message : see declaration of 'sprintf'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\jpeg\jerror.c(171,1): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1774): message : see declaration of 'sprintf'
+  Generating Code...
+  Compiling...
+  jidctflt.c
+  jidctfst.c
+  jidctint.c
+  jidctred.c
+  jmemmgr.c
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\jpeg\jmemmgr.c(1103,1): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1191): message : see declaration of 'getenv'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\CMUgraphicsLib\jpeg\jmemmgr.c(1106,1): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(2263): message : see declaration of 'sscanf'
+  jmemnobs.c
+  jquant1.c
+  jquant2.c
+  jutils.c
+  Generating Code...
+  Restaurant.vcxproj -> A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Debug\Restaurant.exe
