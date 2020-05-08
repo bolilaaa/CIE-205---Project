@@ -1,50 +1,4 @@
-﻿  Demo_Main.cpp
-  ArrivalEvent.cpp
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(25,17): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(34,18): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(40,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(47,18): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(55,17): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(83,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(77): message : while compiling class template member function 'void BHeap<Order *>::rec_heapify(HNode<T> *&)'
-          with
-          [
-              T=Order *
-          ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(145): message : see reference to function template instantiation 'void BHeap<Order *>::rec_heapify(HNode<T> *&)' being compiled
-          with
-          [
-              T=Order *
-          ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(133): message : while compiling class template member function 'void BHeap<Order *>::rec_insert(HNode<T> *&,double,T)'
-          with
-          [
-              T=Order *
-          ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(251): message : see reference to function template instantiation 'void BHeap<Order *>::rec_insert(HNode<T> *&,double,T)' being compiled
-          with
-          [
-              T=Order *
-          ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(250): message : while compiling class template member function 'void BHeap<Order *>::insert(double,T)'
-          with
-          [
-              T=Order *
-          ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(41): message : see reference to function template instantiation 'void BHeap<Order *>::insert(double,T)' being compiled
-          with
-          [
-              T=Order *
-          ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(37): message : see reference to class template instantiation 'BHeap<Order *>' being compiled
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(84,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(80,19): warning C4101: 'largest': unreferenced local variable
-  CancelEvent.cpp
-  Event.cpp
-  GUI.cpp
-  Cook.cpp
-  Order.cpp
-  Restaurant.cpp
+﻿  Restaurant.cpp
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(396,9): warning C4101: 'pOrd': unreferenced local variable
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(474,32): warning C4101: 'dir': unreferenced local variable
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(445,21): warning C4101: 'BC': unreferenced local variable
@@ -85,5 +39,4 @@ A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---P
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(37): message : see reference to class template instantiation 'BHeap<Order *>' being compiled
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(84,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(80,19): warning C4101: 'largest': unreferenced local variable
-  Generating Code...
   Restaurant.vcxproj -> A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Debug\Restaurant.exe
