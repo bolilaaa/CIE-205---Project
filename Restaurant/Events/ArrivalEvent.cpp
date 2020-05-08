@@ -35,6 +35,7 @@ void ArrivalEvent::Execute(Restaurant* pRest)
 			pOrd->setMoney(OrdMoney);
 			pOrd->setArrivalTime(EventTime);
 			pOrd->setStatus(WAIT);
+			pOrd->setType(TYPE_VIP);
 			Order* pOrdTemp;
 			pRest->waitingVIPOrders.peekFront(pOrdTemp);
 			int pri = pOrdTemp->Getpriority();

@@ -77,7 +77,7 @@ void BHeap<T>::rec_heapify(HNode<T>*& subRoot)
 {
 	HNode<T>* larg = subRoot;
 	HNode<T>* temp;
-	int left, right, largest;
+	int left, right;
 	if (subRoot == nullptr)
 		return;
 	left = (subRoot->getleft() != nullptr) ? subRoot->getleft()->getpriority() : 0;

@@ -2,10 +2,9 @@
 #include "..\Rest\Restaurant.h"
 
 
-PromoteEvent::PromoteEvent(int eTime, int oID, ORD_TYPE oType, double add_money) : Event(eTime, oID)
+PromoteEvent::PromoteEvent(int eTime, int oID, double add_money) : Event(eTime, oID)
 {
-    OrdType = oType;
-    Add_Money = add_money;
+    ExMony = add_money;
 }
 void PromoteEvent::Execute(Restaurant* pRest)
 {
@@ -15,12 +14,11 @@ void PromoteEvent::Execute(Restaurant* pRest)
     {
         if (pOrd->GetID() == OrderID)
         {
-            double pri = ((pOrd->getMoney() + Add_Money) * OrdSize) / EventTime; //Priority equation
-            pOrd->setMoney((pOrd->getMoney() + Add_Money));
+            double pri = ((pOrd->getMoney() + ExMony) * pOrd->getSize()) / EventTime; //Priority equation
             pOrd->Setpriority(pri);
-
-            pRest->AddtowaitingVIPOrders(pOrd);
-
+            pOrd->setType(TYPE_VIP);
+            pOrd->setMoney((pOrd->getMoney() + ExMony));
+            pRest->waitingVIPOrders.insert(pri, pOrd);
         }
         else
         {

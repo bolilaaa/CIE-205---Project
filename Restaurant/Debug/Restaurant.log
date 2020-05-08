@@ -1,42 +1,40 @@
-﻿  Restaurant.cpp
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(396,9): warning C4101: 'pOrd': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(474,32): warning C4101: 'dir': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(445,21): warning C4101: 'BC': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(445,43): warning C4101: 'SM': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(445,25): warning C4101: 'BM': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(445,40): warning C4101: 'SC': unreferenced local variable
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(565,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1323): message : see declaration of 'itoa'
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(634,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1323): message : see declaration of 'itoa'
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(701,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1323): message : see declaration of 'itoa'
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(743,1): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdlib.h(1323): message : see declaration of 'itoa'
+﻿  ArrivalEvent.cpp
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(25,17): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(34,18): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(41,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(48,18): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(56,17): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(83,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(77): message : while compiling class template member function 'void BHeap<Order *>::rec_heapify(HNode<T> *&)'
           with
           [
               T=Order *
           ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(165): message : see reference to function template instantiation 'void BHeap<Order *>::rec_heapify(HNode<T> *&)' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(145): message : see reference to function template instantiation 'void BHeap<Order *>::rec_heapify(HNode<T> *&)' being compiled
           with
           [
               T=Order *
           ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(150): message : while compiling class template member function 'void BHeap<Order *>::rec_deleteMax(HNode<T> *&,T &)'
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(133): message : while compiling class template member function 'void BHeap<Order *>::rec_insert(HNode<T> *&,double,T)'
           with
           [
               T=Order *
           ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(267): message : see reference to function template instantiation 'void BHeap<Order *>::rec_deleteMax(HNode<T> *&,T &)' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(251): message : see reference to function template instantiation 'void BHeap<Order *>::rec_insert(HNode<T> *&,double,T)' being compiled
           with
           [
               T=Order *
           ]
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(38): message : while compiling class template member function 'BHeap<Order *>::BHeap(void)'
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.cpp(17): message : see reference to function template instantiation 'BHeap<Order *>::BHeap(void)' being compiled
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(250): message : while compiling class template member function 'void BHeap<Order *>::insert(double,T)'
+          with
+          [
+              T=Order *
+          ]
+A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Events\ArrivalEvent.cpp(42): message : see reference to function template instantiation 'void BHeap<Order *>::insert(double,T)' being compiled
+          with
+          [
+              T=Order *
+          ]
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Rest\Restaurant.h(37): message : see reference to class template instantiation 'BHeap<Order *>' being compiled
 A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(84,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Restaurant\Generic_DS\BHeap.h(80,19): warning C4101: 'largest': unreferenced local variable
   Restaurant.vcxproj -> A:\Google Drive\College\UST-ZC\Junior\'20_Spring\CIE 205\Project\O P\CIE-205---Project\Debug\Restaurant.exe

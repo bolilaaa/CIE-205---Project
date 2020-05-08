@@ -9,7 +9,7 @@ using namespace std;
 
 #include "Restaurant.h"
 #include "..\Events\ArrivalEvent.h"
-
+#include "..\Events\PromoteEvent.h"
 #include "..\Events\CancelEvent.h"
 
 
@@ -41,8 +41,6 @@ void Restaurant::RunSimulation()
 	};
 
 }
-
-
 
 //////////////////////////////////  Event handling functions   /////////////////////////////
 
@@ -505,14 +503,13 @@ void Restaurant::LoadAll(string filename) {
 			break;
 		case 'P':
 			file_load >> CurTime >> CurID >> ExMoney;
-			//CurEvent = new PormoteEvent(CurTime, CurID, ExMoney);
+			CurEvent = new PromoteEvent(CurTime, CurID, ExMoney);
 			break;
 		}
 		EventsQueue.enqueue(CurEvent);
 	}
 	file_load.close();
 }
-
 
 void Restaurant::Output(string filename, int& Nc, int& Gc, int& Vc) {
 	Order* ord;
