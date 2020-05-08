@@ -642,7 +642,7 @@ void Restaurant::STEPBYSTEP()
 		string msg1 = "[TS: " + to_string(CurrentTimeStep) + "]";
 		string msg2 = "Waiting VIP Orders: " + to_string(waitingVIPOrders.CountHNodes()) + "         |    Waiting N Orders: " + to_string(waitingNOROrders.CountNodes()) + "       |   Waiting G Orders: " + to_string(waitingVEGOrders.CountNodes());
 		string msg3 = "Available VIP Cooks: " + to_string(avVIPCooks.CountHNodes()) + "       |     Available N cooks: " + to_string(avNORCooks.CountHNodes()) + "      |   Available G cooks: " + to_string(avVEGCooks.CountHNodes());
-		string msg4 = "Total done VIP Orders: " + to_string(dVIP) + "   |   Total done N Orders: " + to_string(dN) + "   |   Total done G Orders: " + to_string(dG) + "         ||-> CLICK to continue";
+		string msg4 = "Total done VIP Orders: " + to_string(dVIP) + "   |   Total done N Orders: " + to_string(dN) + "   |   Total done G Orders: " + to_string(dG) + "        ";
 		string msg5;
 		if (VIParr[0] != "0")
 		{

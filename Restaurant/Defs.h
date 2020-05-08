@@ -9,8 +9,6 @@ enum ORD_TYPE	//types of orders
 {
 	TYPE_NRM,	//normal order
 	TYPE_VGAN,	//vegan
-	TYPE_CHN,	//chinese
-	TYPE_MEX,	//mexican
 	TYPE_VIP,	//VIP
 	TYPE_CNT	//Number of types
 
@@ -43,7 +41,7 @@ enum PROG_MODE	//mode of the program interface
 enum EVENT_TYPE	//types of orders
 {
 	NORMAL,	//normal order
-	CANCEL,		//frozen
+	CANCEL,		//cancel
 	PROMOTE,	//promote	
 	Event_CNT	 //No. of event types
 };
