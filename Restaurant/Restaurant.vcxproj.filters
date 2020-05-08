@@ -117,6 +117,9 @@
     <ClInclude Include="Generic_DS\HNode.h">
       <Filter>Generic_DS</Filter>
     </ClInclude>
+    <ClInclude Include="Events\PromoteEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Demo_Main.cpp" />
@@ -244,6 +247,9 @@
       <Filter>Restaurant</Filter>
     </ClCompile>
     <ClCompile Include="Events\CancelEvent.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\PromoteEvent.cpp">
       <Filter>Events</Filter>
     </ClCompile>
   </ItemGroup>
