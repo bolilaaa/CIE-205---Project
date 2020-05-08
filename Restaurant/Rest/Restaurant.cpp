@@ -345,11 +345,11 @@ void Restaurant::Work(int CurrentTimeStep, string* VIParr, string* Narr, string*
 	// Normal
 	if (!brkNORCooks.empty())
 	{
-		navNORCooks.peekFront(pCook);
+		brkNORCooks.peekFront(pCook);
 		if (CurrentTimeStep == (pCook->getBreakTime() + pCook->getBreakCount()))
 		{
 			// move cook
-			navNORCooks.deleteMax(pCook);
+			brkNORCooks.deleteMax(pCook);
 			pCook->setStatus(AV);
 			pCook->setBreakCount(0);
 			avNORCooks.insert(pCook->getSpeed(), pCook);
@@ -359,11 +359,11 @@ void Restaurant::Work(int CurrentTimeStep, string* VIParr, string* Narr, string*
 	// Vegan
 	if (!brkVEGCooks.empty())
 	{
-		navVEGCooks.peekFront(pCook);
+		brkVEGCooks.peekFront(pCook);
 		if (CurrentTimeStep == (pCook->getBreakTime() + pCook->getBreakCount()))
 		{
 			// move cook
-			navVEGCooks.deleteMax(pCook);
+			brkVEGCooks.deleteMax(pCook);
 			pCook->setStatus(AV);
 			pCook->setBreakCount(0);
 			avVEGCooks.insert(pCook->getSpeed(), pCook);
@@ -373,11 +373,11 @@ void Restaurant::Work(int CurrentTimeStep, string* VIParr, string* Narr, string*
 	// VIP
 	if (!brkVIPCooks.empty())
 	{
-		navVIPCooks.peekFront(pCook);
+		brkVIPCooks.peekFront(pCook);
 		if (CurrentTimeStep == (pCook->getBreakTime() + pCook->getBreakCount()))
 		{
 			// move cook
-			navVIPCooks.deleteMax(pCook);
+			brkVIPCooks.deleteMax(pCook);
 			pCook->setStatus(AV);
 			pCook->setBreakCount(0);
 			avVIPCooks.insert(pCook->getSpeed(), pCook);
