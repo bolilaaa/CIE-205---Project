@@ -9,6 +9,8 @@ using namespace std;
 
 #include "Restaurant.h"
 #include "..\Events\ArrivalEvent.h"
+#include "..\Events\CancelEvent.h"
+
 
 
 Restaurant::Restaurant() 
@@ -481,12 +483,6 @@ void Restaurant::LoadAll(string filename) {
 			case 'G':
 				CurOrderType = TYPE_VGAN;
 				break;
-			case 'C':
-				CurOrderType = TYPE_CHN;
-				break;
-			case 'M':
-				CurOrderType = TYPE_MEX;
-				break;
 			case 'V':
 				CurOrderType = TYPE_VIP;
 				break;
@@ -495,7 +491,7 @@ void Restaurant::LoadAll(string filename) {
 			break;
 		case 'X':
 			file_load >> CurTime >> CurID;
-			//CurEvent = new CancelEvent(CurTime, CurID); 
+			CurEvent = new CancelEvent(CurTime, CurID); 
 			break;
 		case 'P':
 			file_load >> CurTime >> CurID >> ExMoney;

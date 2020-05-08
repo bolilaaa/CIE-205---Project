@@ -76,7 +76,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BHeap.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />
     <ClInclude Include="CMUgraphicsLib\error.h" />
@@ -98,7 +97,9 @@
     <ClInclude Include="CMUgraphicsLib\windowinput.h" />
     <ClInclude Include="Defs.h" />
     <ClInclude Include="Events\ArrivalEvent.h" />
+    <ClInclude Include="Events\CancelEvent.h" />
     <ClInclude Include="Events\Event.h" />
+    <ClInclude Include="Generic_DS\BHeap.h" />
     <ClInclude Include="Generic_DS\CompareBPri.h" />
     <ClInclude Include="Generic_DS\CompareCPri.h" />
     <ClInclude Include="Generic_DS\CompareOSPri.h" />
@@ -114,7 +115,6 @@
     <ClInclude Include="Rest\Restaurant.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BHeap.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp" />
     <ClCompile Include="CMUgraphicsLib\image.cpp" />
@@ -151,6 +151,7 @@
     <ClCompile Include="CMUgraphicsLib\mousequeue.cpp" />
     <ClCompile Include="CMUgraphicsLib\windowinput.cpp" />
     <ClCompile Include="Demo_Main.cpp" />
+    <ClCompile Include="Events\CancelEvent.cpp" />
     <ClCompile Include="Events\Event.cpp" />
     <ClCompile Include="Events\ArrivalEvent.cpp" />
     <ClCompile Include="GUI\GUI.cpp" />
